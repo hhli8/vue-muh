@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+      (function (win) {
+        var doc = win.document
+        var docEl = doc.documentElement
+        var metaEl = doc.querySelector('meta[name="viewport"]')
+        var dpr = 0
+        var scale = 0
+        var tid
+        if (metaEl) {
+          var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/)
+          if (match) {
+            scale = parseFloat(match[1])
+            dpr = parseInt(1 / scale)
+          }
+        }
+        docEl.setAttribute('data-dpr', dpr)
+        function refreshRem() {
+          var width = docEl.getBoundingClientRect().width
+          var rem = width / 10
+          docEl.style.fontSize = rem + 'px'
+        }
+        win.addEventListener('resize', function () {
+          clearTimeout(tid)
+          tid = setTimeout(refreshRem, 300)
+        }, false)
+        win.addEventListener('pageshow', function (e) {
+          if (e.persisted) {
+            clearTimeout(tid)
+            tid = setTimeout(refreshRem, 300)
+          }
+        }, false)
+        if (doc.readyState === 'complete') {
+          doc.body.style.fontSize = 12 * dpr + 'px'
+        } else {
+          doc.addEventListener('DOMContentLoaded', function (e) {
+            doc.body.style.fontSize = 12 * dpr + 'px'
+          }, false)
+        }
+        refreshRem()
+      })(window)
+    </script>
+    <title>vue-muh</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/dist/muh.js"></script>
+  </body>
+</html>
