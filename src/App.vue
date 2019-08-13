@@ -27,14 +27,31 @@ export default {
       // sku组件
       goods: [], // 商品列表
       skus: [], // sku列表
-      skuOption: {} // 其他配置
+      skuOption: {}, // 其他配置
+      degood: {} // 默认商品信息
     }
   },
   created () {
     setTimeout(() => {
       this.goods = skuData.goods
       this.skus = skuData.skus
-      this.skuOption = {}
+      this.degood = {
+        price: 6500, // 分
+        id: '12asdqewasdad',
+        none_sku: true // 是否sku商品
+      }
+      this.skuOption = {
+        needInit: false, // 每次在弹窗里打开是否需要初始化
+        structure: {
+          name: 'pname',
+          id: 'pid',
+          children: 'values',
+          cstructure: {
+            name: 'vname',
+            id: 'vid'
+          }
+        }
+      }
     }, 500)
   }
 }

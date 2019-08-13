@@ -6,7 +6,7 @@
     &-title {
         color: #333;
         font-size: 26px;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
     &-list {
         .name {
@@ -21,8 +21,7 @@
             .sitem {
                 display: inline-block;
                 margin-bottom: 30px;
-                line-height: 58px;
-                padding: 0 26px;
+                padding: 12px 26px;
                 color: #000;
                 font-size: 26px;
                 background: #F7F7F7;
@@ -30,12 +29,12 @@
                 margin-right: 34px;
                 box-sizing: border-box;
             }
-            .sitem.disabled {
-                color: #999;
+            .sitem.disable {
+                color: #bdbdbd;
             }
-            .sitem.acted {
-                color: #fff;
-                background: #F54B78;
+            .sitem.chosed {
+                color: #BD415E;
+                background: #FEF4F3;
             }
         }
     }

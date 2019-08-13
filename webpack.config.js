@@ -1,7 +1,5 @@
 var path = require('path')
 var webpack = require('webpack')
-// var px2rem = require('postcss-pxtorem')
-// var px2rem = require('postcss-px2rem')
 
 module.exports = {
   entry: './src/main.js',
@@ -15,24 +13,6 @@ module.exports = {
     umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define。
   },
   module: {
-//  loaders: [
-//    {
-//      test: /\.css$/,
-//      loader: "style-loader!css-loader!postcss-loader"
-//    }
-//  ],
-//  postcss: function() {
-//    return [px2rem({remUnit: 75})] // 设置基准值，75是以iphone6的标准
-//  },
-//  plugins: {
-//    'autoprefixer': {},
-//    'postcss-pxtorem': {
-//      'rootValue': 750,
-//      'propList': ['*']
-//      //  "postcss-loader": "^3.0.0",
-//      //  "postcss-px2rem": "^0.3.0",
-//    }
-//  },
     rules: [
       {
         test: /\.css$/,
@@ -87,30 +67,30 @@ module.exports = {
             'scss': [
               'vue-style-loader',
               'css-loader',
-              'sass-loader',
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: true,
-                  config: {
-                    path: '.postcssrc.js'
-                  }
-                }
-              }
+              'sass-loader'
+//            {
+//              loader: 'postcss-loader',
+//              options: {
+//                sourceMap: true,
+//                config: {
+//                  path: '.postcssrc.js'
+//                }
+//              }
+//            }
             ],
             'sass': [
               'vue-style-loader',
               'css-loader',
-              'sass-loader?indentedSyntax',
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: true,
-                  config: {
-                    path: '.postcssrc.js'
-                  }
-                }
-              }
+              'sass-loader?indentedSyntax'
+//            {
+//              loader: 'postcss-loader',
+//              options: {
+//                sourceMap: true,
+//                config: {
+//                  path: '.postcssrc.js'
+//                }
+//              }
+//            }
             ]
           }
           // other vue-loader options go here
