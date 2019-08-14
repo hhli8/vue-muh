@@ -55,13 +55,7 @@ export default {
   },
   watch: {
     skulist (val) {
-      var str = ''
-      if (val && val.length) {
-        val.forEach((item) => {
-          str += item[this.fname] + ' '
-        })
-      }
-      this.skuChoseText = '请选择 ' + str
+      this.init(val)
     }
   },
   data () {
@@ -76,6 +70,33 @@ export default {
     //
   },
   methods: {
+    init (val) {
+      var str = ''
+      if (val && val.length) {
+        val.forEach((item, index) => {
+          str += item[this.fname] + ' ' // 拼接文案
+          // this.$set(item, 'nopitch', false) // 标记这个属性是否可以选择 true 不可
+          // this.$set(item, 'match', false) // 标记这个属性是否已经被选中 false 未选中
+          item[this.fchildren].forEach((sitem, sindex) => {
+            this.$set(sitem, 'nopitch', true)
+            this.$set(sitem, 'match', false)
+            for (var i = 0, l = this.goodlist.length; i < l; i++) {
+              let target = this.goodlist[i]
+              let skuPvStrs = target.skuPvStrs || (item[this.fid] + ':' + target[`skus${index+1}`])
+              let pvStr = item[this.fid] + ':' + sitem[this.sid]
+              var tag = skuPvStrs.indexOf(pvStr) !== -1
+              if (tag) {
+                this.$set(sitem, 'nopitch', false) // sku里面，只要有good里面存在对应的则设为false,可选
+                break
+              }
+              console.log(i)
+            }
+          })
+        })
+      }
+      this.skuChoseText = '请选择 ' + str
+      console.log(this.goodlist)
+    },
     select () { // 选择sku
       //
     }
