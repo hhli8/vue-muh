@@ -3,6 +3,12 @@
  */
 <template>
   <div class="muh-sku">
+    <div class="muh-sku-good">
+      <div class="good-img"><img :src="goodimg" alt="" /></div>
+      <div class="good-info">
+        <div>{{good_price}}</div>
+      </div>
+    </div>
     <div class="muh-sku-title">{{skuChoseText}}</div>
     <div class="muh-sku-list" v-for="(item, index) in skulist" :key="index">
       <div class="name">{{item[fname]}}</div>
@@ -51,16 +57,28 @@ export default {
     },
     sid () {
       return (this.option.structure && this.option.structure.cstructure && this.option.structure.cstructure.id) || 'vid'
+    },
+    stockflag () { // 库存开关
+      return this.option.stockflag
     }
   },
   watch: {
     skulist (val) {
       this.init(val)
+    },
+    option (obj) {
+      if (obj) {
+        this.goodimg = obj.degood && obj.degood.img
+        this.good_price = obj.degood && (obj.degood.price / 100).toFixed(2)
+      }
     }
   },
   data () {
     return {
-      skuChoseText: ''
+      skuChoseText: '',
+      goodimg: '', // 商品图片
+      good_price: '', // 商品价格-展示
+      good_oprice: '' // 商品原价
     }
   },
   created () {
@@ -85,20 +103,34 @@ export default {
               let skuPvStrs = target.skuPvStrs || (item[this.fid] + ':' + target[`skus${index+1}`])
               let pvStr = item[this.fid] + ':' + sitem[this.sid]
               var tag = skuPvStrs.indexOf(pvStr) !== -1
+              if (this.stockflag) {
+                tag = skuPvStrs.indexOf(pvStr) !== -1 && (target.stock_num && target.stock_num > 0)
+              }
               if (tag) {
-                this.$set(sitem, 'nopitch', false) // sku里面，只要有good里面存在对应的则设为false,可选
+                this.$set(sitem, 'nopitch', false) // sku里面，只要有good里面存在对应(或库存为0)的则设为false,可选
                 break
               }
-              console.log(i)
             }
           })
         })
       }
       this.skuChoseText = '请选择 ' + str
-      console.log(this.goodlist)
     },
-    select () { // 选择sku
-      //
+    cancelSelectInit () {
+      var obj = this.option
+      this.goodimg = obj.degood && obj.degood.img
+      this.good_price = obj.degood && (obj.degood.price / 100).toFixed(2)
+    },
+    select (e, item, index, sitem, sindex) { // 选择sku
+      if (sitem.nopitch) return
+      if (sitem.match) {
+        this.$set(sitem, 'match', false)
+        this.cancelSelectInit()
+      } else {
+        this.$set(sitem, 'match', true)
+        if (sitem.imgUrl) this.goodimg = sitem.imgUrl
+        this.good_price = 100
+      }
     }
   }
 }

@@ -3,6 +3,22 @@
  */
 .muh-sku {
     padding: 0 20px;
+    &-good {
+        display: flex;
+        margin-bottom: 20px;
+        .good-img {
+            width: 180px;
+            height: 180px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .good-info {
+            flex: 1;
+            padding-left: 20px;
+        }
+    }
     &-title {
         color: #333;
         font-size: 26px;
