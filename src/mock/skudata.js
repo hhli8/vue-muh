@@ -6,7 +6,7 @@ export default {
 //  { skuPvStrs: '', skuCode: 'wsasd123456710', skus1: '389', skus2: '701', skus3: '601', stock_num: 10 },
     { skuPvStrs: '', skuCode: 'dwsasd12345678', skus1: '387', skus2: '702', skus3: '601', stock_num: 0 },
     { skuPvStrs: '', skuCode: 'dwsasd12345679', skus1: '388', skus2: '702', skus3: '601', stock_num: 10 },
-    { skuPvStrs: '', skuCode: 'dwsasd123456710', skus1: '389', skus2: '702', skus3: '601', stock_num: 10 },
+//  { skuPvStrs: '', skuCode: 'dwsasd123456710', skus1: '389', skus2: '702', skus3: '601', stock_num: 10 },
     { skuPvStrs: '', skuCode: 'swsasd12345678', skus1: '387', skus2: '703', skus3: '601', stock_num: 0 },
     { skuPvStrs: '', skuCode: 'swsasd12345679', skus1: '388', skus2: '703', skus3: '601', stock_num: 10 },
     { skuPvStrs: '', skuCode: 'swsasd123456710', skus1: '389', skus2: '703', skus3: '601', stock_num: 10 },
@@ -51,8 +51,8 @@ export default {
       pid: 3,
       pname: '规格',
       values: [
-        { vid: 601, imgUrl: 'https://cbu01.alicdn.com/img/ibank/2018/741/751/8608157147_582723176.jpg', vname: '男' },
-        { vid: 602, imgUrl: 'https://cbu01.alicdn.com/img/ibank/2018/848/790/8608097848_582723176.jpg', vname: '女' }
+        { vid: 601, imgUrl: '', vname: '男' },
+        { vid: 602, imgUrl: '', vname: '女' }
       ]
     }
   ],

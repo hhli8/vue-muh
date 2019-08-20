@@ -78,7 +78,8 @@ export default {
       skuChoseText: '',
       goodimg: '', // 商品图片
       good_price: '', // 商品价格-展示
-      good_oprice: '' // 商品原价
+      good_oprice: '', // 商品原价
+      seleceProps: [] // 选中的sku-item集合
     }
   },
   created () {
@@ -117,19 +118,55 @@ export default {
       this.skuChoseText = '请选择 ' + str
     },
     cancelSelectInit () {
+      // 取消时获取其他类里面选中的item，判断有无img，有则用，否则用默认，理论只有一个类会有
       var obj = this.option
-      this.goodimg = obj.degood && obj.degood.img
+      var resetOver = false
+      this.seleceProps.forEach((item) => {
+        if (item && item.imgUrl) {
+          this.goodimg = item.imgUrl
+          resetOver = true
+        }
+      })
+      if (!resetOver) this.goodimg = obj.degood && obj.degood.img
       this.good_price = obj.degood && (obj.degood.price / 100).toFixed(2)
+    },
+    afterSelectComputed () {
+      // step1:将非同级的按钮都置为可点// 已选中的后续处理
     },
     select (e, item, index, sitem, sindex) { // 选择sku
       if (sitem.nopitch) return
       if (sitem.match) {
         this.$set(sitem, 'match', false)
+        this.seleceProps[index] = ''
         this.cancelSelectInit()
+        // 处理选中后影响整个sku
       } else {
         this.$set(sitem, 'match', true)
         if (sitem.imgUrl) this.goodimg = sitem.imgUrl
         this.good_price = 100
+        this.seleceProps[index] = sitem
+        // 处理选中后影响整个sku
+        // step1:将非同级的未选中按钮都置为可点
+        console.log(this.skulist)
+        this.skulist.map((i, indexi) => {
+          // 将非同级的都设置为可点
+          if (index !== indexi) {
+            i[this.fchildren].map((j) => {
+              console.log(j)
+              // this.$set(j, 'nopitch', false)
+            })
+          } else {
+            // 将同级激活的取消
+//          i.values.map((j) => {
+//            if (j.match) {
+//              this.$set(j, 'match', false)
+//            }
+//          })
+          }
+        })
+        // step2:将当前设为选中
+        this.$set(sitem, 'match', true)
+        // step3:
       }
     }
   }
