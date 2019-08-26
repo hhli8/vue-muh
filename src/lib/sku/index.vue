@@ -140,6 +140,7 @@ export default {
         this.seleceProps[index] = ''
         this.cancelSelectInit()
         // 处理选中后影响整个sku
+        // 取消后非同级的置灰的有可能需要重新激活,同step3
       } else {
         this.$set(sitem, 'match', true)
         if (sitem.imgUrl) this.goodimg = sitem.imgUrl
@@ -147,27 +148,87 @@ export default {
         this.seleceProps[index] = sitem
         // 处理选中后影响整个sku
         // step1:将非同级的未选中按钮都置为可点
-        console.log(this.skulist)
-        this.skulist.map((i, indexi) => {
+        /* this.skulist.map((i, indexi) => {
           // 将非同级的都设置为可点
           if (index !== indexi) {
             i[this.fchildren].map((j) => {
-              console.log(j)
-              // this.$set(j, 'nopitch', false)
+              this.$set(j, 'nopitch', false)
             })
           } else {
             // 将同级激活的取消
-//          i.values.map((j) => {
-//            if (j.match) {
-//              this.$set(j, 'match', false)
-//            }
-//          })
+            i[this.fchildren].map((j) => {
+              if (j.match) {
+                this.$set(j, 'match', false)
+              }
+            })
+          }
+        }) */
+        item[this.fchildren].map((j) => {
+          if (j.match) {
+            this.$set(j, 'match', false)
           }
         })
         // step2:将当前设为选中
         this.$set(sitem, 'match', true)
-        // step3:
+        // step3:根据已选的sku集合轮询判断哪些需要置灰，不可点
       }
+      // step1:将非同级的未选中按钮都置为可点
+      this.skulist.map((i, indexi) => {
+        // 将非同级的都设置为可点
+        if (index !== indexi) {
+          i[this.fchildren].map((j) => {
+            this.$set(j, 'nopitch', false)
+          })
+        }
+      })
+      this.dealAfterToggle(item, index, sitem, sindex)
+    },
+    // 处理选择或取消后, 根据已选的sku集合轮询判断哪些需要置灰，不可点
+    dealAfterToggle (item, index, sitem, sindex) {
+      console.log(this.seleceProps)
+      // console.log(this.skulist, this.fid, this.sid)
+      // 获取需要匹配的skustr
+      // let strArr = this.getNocurSkustr(index)
+      // 遍历处理
+      this.skulist.forEach((i, indexi) => {
+        // 非当前操作的spu，下的sku需要处理，且根据已选的其他的spu下的sku进行处理
+        if (index !== indexi) {
+          // 非自身所在的spu
+          // 当前的单个sku与其他的已选的加起来处理goodslist
+          i[this.fchildren].forEach((j, indexj) => {
+            let nopitch = true // 先假设不满足
+            for (var k = 0, l = this.goodlist.length; k < l; k++) {
+              // 存在有符合当前的sku，且符合非本spu下的已选的sku则将nopitch=false
+              if (this.checkIspitch(this.goodlist[k], j, indexi)) {
+                nopitch = false
+                break
+              }
+            }
+            this.$set(j, 'nopitch', nopitch)
+          })
+        }
+      })
+    },
+    getNocurSkustr (index) {
+      let str = []
+      this.seleceProps.forEach((obj, oindex) => {
+        if (obj) {
+          str[oindex] = this.skulist[oindex][this.fid] + ':' + obj[this.sid]
+        }
+      })
+      return str
+    },
+    checkIspitch (good, sitem, indexi) {
+      var tag = true
+      if (Number(good[`skus${indexi + 1}`]) !== Number(sitem[this.sid])) {
+        tag = false
+      }
+//    this.seleceProps.forEach((item, index) => {
+//      if (item && item[this.sid] !== good[`skus${index + 1}`]) {
+//        tag = false
+//      }
+//    })
+      return tag
     }
   }
 }

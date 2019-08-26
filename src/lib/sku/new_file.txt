@@ -1,0 +1,30 @@
+i[this.fchildren].forEach((j, indexj) => {
+            let nopitch = true // 先假设不满足
+            for (var k = 0, l = this.goodlist.length; k < l; k++) {
+              var isAll = true
+              // 非index级别的单个span进行与非同级的已选中的组合进行判别
+              this.seleceProps.forEach((sel, seli) => {
+                if (i[this.fid] !== 2222) {
+                  
+                }
+              })
+              /* for (var h in this.seleceProps) {
+                if (Number(h) !== Number(i.pid)) { // 属性非同级才行
+                  var str = h + ':' + this.seleceProps[h]
+                  if (this.goods[k].skuPvStrs.indexOf(str) === -1) { // 不包含
+                    isAll = false
+                  }
+                }
+              }
+              if (this.goods[k].skuPvStrs.indexOf(myStr) !== -1 && isAll) {
+                nopitch = false // 满足条件
+                break
+              }
+              this.$set(j, 'nopitch', nopitch) */
+            }
+            
+            
+            
+            
+            this.$set(j, 'nopitch', nopitch)
+          })
