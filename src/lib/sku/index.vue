@@ -60,6 +60,9 @@ export default {
     },
     stockflag () { // 库存开关
       return this.option.stockflag
+    },
+    showprice () { // 展示的价格
+      return (this.option.structure && this.option.structure.cstructure && this.option.structure.cstructure.pricekey) || 'price'
     }
   },
   watch: {
@@ -79,7 +82,8 @@ export default {
       goodimg: '', // 商品图片
       good_price: '', // 商品价格-展示
       good_oprice: '', // 商品原价
-      seleceProps: [] // 选中的sku-item集合
+      seleceProps: [], // 选中的sku-item集合
+      targetGood: '' // 选中的商品
     }
   },
   created () {
@@ -144,7 +148,8 @@ export default {
       } else {
         this.$set(sitem, 'match', true)
         if (sitem.imgUrl) this.goodimg = sitem.imgUrl
-        this.good_price = 100
+        // this.good_price = 100
+        // if (sitem[this.showprice]) this.good_price = sitem[this.showprice]
         this.seleceProps[index] = sitem
         // 处理选中后影响整个sku
         // step1:将非同级的未选中按钮都置为可点
@@ -182,13 +187,13 @@ export default {
         }
       })
       this.dealAfterToggle(item, index, sitem, sindex)
+      // 处理选择后的显示标题文案以及价格等
+      this.dealShowParams()
     },
     // 处理选择或取消后, 根据已选的sku集合轮询判断哪些需要置灰，不可点
     dealAfterToggle (item, index, sitem, sindex) {
-      console.log(this.seleceProps)
+      // console.log(this.seleceProps)
       // console.log(this.skulist, this.fid, this.sid)
-      // 获取需要匹配的skustr
-      // let strArr = this.getNocurSkustr(index)
       // 遍历处理
       this.skulist.forEach((i, indexi) => {
         // 非当前操作的spu，下的sku需要处理，且根据已选的其他的spu下的sku进行处理
@@ -209,26 +214,56 @@ export default {
         }
       })
     },
-    getNocurSkustr (index) {
-      let str = []
-      this.seleceProps.forEach((obj, oindex) => {
-        if (obj) {
-          str[oindex] = this.skulist[oindex][this.fid] + ':' + obj[this.sid]
-        }
-      })
-      return str
-    },
     checkIspitch (good, sitem, indexi) {
       var tag = true
       if (Number(good[`skus${indexi + 1}`]) !== Number(sitem[this.sid])) {
         tag = false
       }
-//    this.seleceProps.forEach((item, index) => {
-//      if (item && item[this.sid] !== good[`skus${index + 1}`]) {
-//        tag = false
-//      }
-//    })
+      // 激活的非同级sku是否和当前good匹配
+      this.seleceProps.forEach((item, index) => {
+        if (index === indexi) return // 不与自身所在的激活比较
+        if (item && (Number(item[this.sid]) !== Number(good[`skus${index + 1}`]))) {
+          tag = false
+        }
+      })
       return tag
+    },
+    dealShowParams () {
+      let count = 0
+      let hadtext = ''
+      let notext = ''
+      this.skulist.forEach((item, si) => {
+        if (this.seleceProps[si]) {
+          hadtext += `"${this.seleceProps[si][this.sname]}" `
+          count++
+        } else {
+          notext += item[this.fname] + ' '
+        }
+      })
+      if (count === this.skulist.length) {
+        this.skuChoseText = '已选: ' + hadtext
+        for (var k = 0, l = this.goodlist.length; k < l; k++) {
+          var tag = true
+          // 都符合则 是对应商品
+          for (var i = 0, L = this.seleceProps.length; i < L; i++) {
+            var sku = this.seleceProps[i]
+            if (Number(sku[this.sid]) !== Number(this.goodlist[k][`skus${i + 1}`])) {
+              tag = false
+              break
+            }
+          }
+          if (tag) {
+            this.targetGood = this.goodlist[k]
+            var price = this.goodlist[k][this.showprice]
+            // console.log(this.targetGood)
+            var obj = this.option
+            this.good_price = price ? (price /100).toFixed(2) : (obj.degood && (obj.degood.price / 100).toFixed(2))
+            break
+          }
+        }
+      } else {
+        this.skuChoseText = '请选择 ' + notext
+      }
     }
   }
 }

@@ -49,7 +49,9 @@ export default {
           children: 'values',
           cstructure: {
             name: 'vname',
-            id: 'vid'
+            id: 'vid',
+            pricekey: 'price',
+            oripricekey: 'oripricekey'
           }
         }
       }
