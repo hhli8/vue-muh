@@ -14,13 +14,13 @@ import { MuhSku } from 'vue-muh'
 Vue.use(MuhSku)
 * 使用：
 ```
-    <muh-sku
-     :goodlist="goodlist"
-     :skulist="skulist"
-     :option="option">
-    </muh-sku>
+<muh-sku
+ :goodlist="goodlist"
+ :skulist="skulist"
+ :option="option">
+</muh-sku>
 ```
-   
+``` 
 * goodlist-商品集合
     [
       {
@@ -67,6 +67,7 @@ Vue.use(MuhSku)
         }
       }
     }
+```
   
 
 ## Build Setup
