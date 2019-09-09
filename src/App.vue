@@ -9,12 +9,14 @@
       <router-view v-if='$route.meta.keepAlive'></router-view>
     </keep-alive>
     <router-view v-if='!$route.meta.keepAlive'></router-view>-->
+    
     <div>Hello World</div>
-    <sku
+    
+    <muh-sku
       :goodlist="goods"
       :skulist="skus"
       :option="skuOption">
-    </sku>
+    </muh-sku>
   </div>
 </template>
 

@@ -1,12 +1,13 @@
 <template>
   <div>
-    await-test111
+    <p>test1</p>
+    <div></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'aweWait'
+  name: 'Test'
 }
 </script>
 

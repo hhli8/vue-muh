@@ -5,11 +5,13 @@ import router from './routes'
 //Vue.use(keyboard)
 // .use(loading)
    
-import { Keyboard, Loading, AweWait, Sku } from './lib/index.js'
-Vue.use(Keyboard)
-   .use(Loading)
-   .use(AweWait)
-   .use(Sku)
+//import { Keyboard, Loading, AweWait, Sku } from './lib/index.js'
+//Vue.use(Keyboard)
+// .use(Loading)
+// .use(AweWait)
+// .use(Sku)
+import { MuhSku } from './lib/muh'
+Vue.use(MuhSku)
 
 new Vue({
   el: '#app',

@@ -16,9 +16,6 @@
         <div v-for="(sitem, sindex) in item[fchildren]" class="sitem" :class="[sitem.nopitch?'disable':'', sitem.match?'chosed':'']" :key="sindex" @click="select($event, item, index, sitem, sindex)">
           {{sitem[sname]}}
         </div>
-        <!--<div class="sitem">阿斯达</div>
-        <div class="sitem disable">阿达撒</div>
-        <div class="sitem chosed">阿萨德</div>-->
       </div>
     </div>
   </div>
@@ -26,7 +23,7 @@
 
 <script>
 export default {
-  name: 'sku',
+  name: 'muhSku',
   props: {
     goodlist: {
       type: Array,
