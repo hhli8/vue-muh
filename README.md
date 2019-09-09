@@ -12,6 +12,9 @@ entry配置切换，打包发布和本地
 引用：
 import { MuhSku } from 'vue-muh'
 Vue.use(MuhSku)
+    <div class="footer">
+        &copy; 2004 Foo Corporation
+    </div>
 使用：
     <muh-sku
      :goodlist="goodlist"
