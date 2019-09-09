@@ -9,19 +9,18 @@ entry配置切换，打包发布和本地
 版本修改+1
 
 ## sku组件
-引用：
+* 引用：
 import { MuhSku } from 'vue-muh'
 Vue.use(MuhSku)
-    <div class="footer">
-        &copy; 2004 Foo Corporation
-    </div>
-使用：
+* 使用：
+```
     <muh-sku
      :goodlist="goodlist"
      :skulist="skulist"
      :option="option">
     </muh-sku>
-
+```
+   
 * goodlist-商品集合
     [
       {
