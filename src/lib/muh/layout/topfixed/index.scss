@@ -1,0 +1,60 @@
+.topFixed {
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    z-index: 100;
+    .bar {}
+    .besideBar {
+        .header {
+            height: 88px;
+            line-height: 88px;
+            font-size: 36px;
+            color: #333;
+            position: relative;
+            text-align: center;
+            .icon {
+                display: inline-block;
+                width: 58px;
+                height: 58px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .back {
+                left: 20px;
+                background: url(../imgs/icon-back.png) no-repeat center;
+                background-size: 100%;
+            }
+            .right {
+                right: 20px;
+            }
+            .share {
+                background: url(../imgs/icon-share.png) no-repeat center;
+                background-size: 100%;
+            }
+            .title {}
+        }
+    }
+}
+.scroll-content {
+    
+}
+
+//*********************************style
+.sina {
+    .topFixed {
+        background: #BDBDBD;
+        .besideBar {
+            .header {
+                .back {
+                    background: url(../imgs/icon-back-b.png) no-repeat center;
+                    background-size: 100%;
+                }
+                .share {
+                    background: url(../imgs/icon-share-b.png) no-repeat center;
+                    background-size: 100%;
+                }
+            }
+        }
+    }
+}

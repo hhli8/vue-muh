@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './routes'
+
+import mixinBase from '@/mixins/base'
 //import { keyboard, loading } from './lib/index.js'
 //Vue.use(keyboard)
 // .use(loading)
@@ -10,8 +12,11 @@ import router from './routes'
 // .use(Loading)
 // .use(AweWait)
 // .use(Sku)
-import { MuhSku } from './lib/muh'
+import { MuhSku, LayTpfix } from './lib/muh'
 Vue.use(MuhSku)
+   .use(LayTpfix)
+   
+Vue.mixin(mixinBase)
 
 new Vue({
   el: '#app',

@@ -10,13 +10,21 @@
     </keep-alive>
     <router-view v-if='!$route.meta.keepAlive'></router-view>-->
     
-    <div>Hello World</div>
+    <!--<div>Hello World</div>-->
     
-    <muh-sku
+    <!--<muh-sku
       :goodlist="goods"
       :skulist="skus"
       :option="skuOption">
-    </muh-sku>
+    </muh-sku>-->
+    
+    <lay-tpfix :option="layTpfix">
+      <span slot="right" class="more"></span>
+      <div slot="nav">this is nav</div>
+      <div slot="listbox">
+        start<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />end
+      </div>
+    </lay-tpfix>
   </div>
 </template>
 
@@ -29,7 +37,20 @@ export default {
       // sku组件
       goods: [], // 商品列表
       skus: [], // sku列表
-      skuOption: {} // 其他配置
+      skuOption: {}, // 其他配置
+      // layout
+      layTpfix: {
+        style: 'sina',
+        title: 'muh-is good',
+        right: 'share', // self-自定义 share-分享
+        backFun: '',
+        backFun2: () => {
+          console.log('back')
+        }, //
+        rightFun: () => {
+          console.log('right')
+        } //
+      }
     }
   },
   created () {
@@ -72,7 +93,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
   font-size: 24px;
 }
 
@@ -92,5 +112,15 @@ li {
 
 a {
   color: #42b983;
+}
+
+.more {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  background: red;
 }
 </style>
