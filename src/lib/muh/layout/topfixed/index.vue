@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { apwbBridge, setSBcolor } from '@/util/appbridge'
 export default {
   name: 'layTpfix',
   props: ['option'],
@@ -33,7 +34,7 @@ export default {
     }
   },
   mounted () {
-    localStorage.physicalheight = '40px'
+    // localStorage.physicalheight = ''
     if (this.isApp) {
       if (localStorage.physicalheight) {
         this.physicalHeight = localStorage.physicalheight
@@ -49,6 +50,7 @@ export default {
     } else {
       this.setCopyHeight(0)
     }
+    setSBcolor('f')
   },
   methods: {
     setCopyHeight (height) {
@@ -62,7 +64,6 @@ export default {
         } else {
           apwbBridge('back')
         }
-        // apwbBridge('back')
       } else {
         if (this.option.backFun) {
           this.option.backFun()

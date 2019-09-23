@@ -4,10 +4,30 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-//  {
-//    path: '/sku',
-//    name: 'SKU',
-//    component: resolve => { require(['@/views/Sku.vue'], resolve) }
-//  }
+    {
+      path: '/',
+      name: '',
+      component: resolve => { require(['@/views/index.vue'], resolve) }
+    },
+    {
+      path: '/button',
+      name: 'subButton',
+      component: resolve => { require(['@/views/sub/button.vue'], resolve) }
+    },
+    {
+      path: '/sku',
+      name: 'funSku',
+      component: resolve => { require(['@/views/fun/sku.vue'], resolve) }
+    },
+    {
+      path: '/layout_topfixed',
+      name: 'layoutTopfixed',
+      component: resolve => { require(['@/views/layout/topfixed.vue'], resolve) }
+    },
+    {
+      path: '/layout_fullscreen',
+      name: 'layoutFullscreen',
+      component: resolve => { require(['@/views/layout/fullscreen.vue'], resolve) }
+    }
   ]
 })

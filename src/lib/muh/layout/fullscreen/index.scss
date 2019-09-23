@@ -1,0 +1,58 @@
+.app {
+    min-height: 100vh;
+    background: linear-gradient(220deg,rgba(152,142,249,1) 0%,rgba(111,124,245,1) 100%);
+    .topFixed {
+        position: fixed;
+        width: 100%;
+        z-index: 200;
+        .physics-state-bar {
+            
+        }
+        .header {
+            height: 88px;
+            position: relative;
+            .back, .right {
+                height: 58px;
+                width: 58px;
+                position: absolute;
+                display: inline-block;
+                top: 50%;
+                margin-top: -29px;
+            }
+            .back {
+                left: 30px;
+            }
+            .back.b {
+                background: url(../imgs/icon-back-type2-w.png) no-repeat center;
+                background-size: 100%;
+            }
+            .back.f {
+                background: url(../imgs/icon-back-type2-b.png) no-repeat center;
+                background-size: 100%;
+            }
+            .right.b {
+                right: 30px;
+                background: url(../imgs/icon-header-rule.png) no-repeat center;
+                background-size: 100%;
+            }
+            .right.f {
+                right: 30px;
+                background: url(../imgs/icon-header-rule-black.png) no-repeat center;
+                background-size: 100%;
+            }
+            .title {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                color: #000;
+                font-size: 36px;
+            }
+        }
+    }
+    .content {
+        .copy-header {
+            height: 88px;
+        }
+    }
+}

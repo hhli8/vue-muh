@@ -5,10 +5,10 @@
     <keyboard></keyboard>
     <loading></loading>
     <link-router href="" class="jump">SKU</link-router>-->
-    <!--<keep-alive>
+    <keep-alive>
       <router-view v-if='$route.meta.keepAlive'></router-view>
     </keep-alive>
-    <router-view v-if='!$route.meta.keepAlive'></router-view>-->
+    <router-view v-if='!$route.meta.keepAlive'></router-view>
     
     <!--<div>Hello World</div>-->
     
@@ -18,13 +18,13 @@
       :option="skuOption">
     </muh-sku>-->
     
-    <lay-tpfix :option="layTpfix">
+    <!--<lay-tpfix :option="layTpfix">
       <span slot="right" class="more"></span>
       <div slot="nav">this is nav</div>
       <div slot="listbox">
         start<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />asdasdasdasdasdasdasd<br />end
       </div>
-    </lay-tpfix>
+    </lay-tpfix>-->
   </div>
 </template>
 
@@ -79,6 +79,21 @@ export default {
         }
       }
     }, 500)
+    // this.registerVconsole()
+  },
+  mounted () {
+    //
+  },
+  methods: {
+    registerVconsole () {
+      const script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src = 'https://cdn.basestonedata.com/jlib/vconsole.last.min.js'
+      document.getElementsByTagName('body')[0].appendChild(script)
+      script.onload = () => {
+        new VConsole() // eslint-disable-line
+      }
+    }
   }
 }
 </script>
@@ -112,6 +127,10 @@ li {
 
 a {
   color: #42b983;
+}
+
+p {
+  margin: 0;
 }
 
 .more {
