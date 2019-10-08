@@ -20,6 +20,11 @@ export default new Router({
       component: resolve => { require(['@/views/fun/sku.vue'], resolve) }
     },
     {
+      path: '/popup',
+      name: 'funPopup',
+      component: resolve => { require(['@/views/fun/popup.vue'], resolve) }
+    },
+    {
       path: '/layout_topfixed',
       name: 'layoutTopfixed',
       component: resolve => { require(['@/views/layout/topfixed.vue'], resolve) }

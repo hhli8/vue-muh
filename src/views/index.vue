@@ -28,7 +28,8 @@ export default {
           grade: '功能组件',
           children: [
             { name: 'sku选择', path: 'funSku' },
-            { name: '弹窗', path: 'funDialog' }
+            { name: '弹窗', path: 'funDialog' },
+            { name: 'popup', path: 'funPopup' }
           ]
         },
         {
