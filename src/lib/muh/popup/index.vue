@@ -53,6 +53,7 @@ export default {
       setTimeout(() => {
         this.bottom = 0
         this.uishow = true
+        this.addClass(document.body, 'muh-overflow-hidden')
       }, 50)
     },
     close () {
@@ -61,6 +62,7 @@ export default {
       setTimeout(() => {
         this.elshow = false
         this.$emit('close')
+        this.removeClass(document.body, 'muh-overflow-hidden')
       }, 300)
     },
     overlayClick () {
@@ -71,3 +73,8 @@ export default {
 </script>
 
 <style scoped="scoped" lang="scss" src="./index.scss"></style>
+<style>
+body.muh-overflow-hidden {
+  overflow: hidden !important;
+}
+</style>
