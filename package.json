@@ -1,7 +1,7 @@
 {
   "name": "vue-muh",
   "description": "A Vue.js project",
-  "version": "1.0.18",
+  "version": "1.0.21",
   "author": "lihaihong <lihaihong@sinafenqi.com>",
   "license": "MIT",
   "private": false,
@@ -33,7 +33,7 @@
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
     "ip": "^1.1.5",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",
     "postcss-pxtorem": "^4.0.1",
     "sass-loader": "^6.0.6",

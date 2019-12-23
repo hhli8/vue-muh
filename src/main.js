@@ -12,11 +12,14 @@ import mixinBase from '@/mixins/base'
 // .use(Loading)
 // .use(AweWait)
 // .use(Sku)
-import { MuhSku, MuhPopup, LayTpfix, LayFlscreen } from './lib/muh'
-Vue.use(MuhSku)
-   .use(MuhPopup)
-   .use(LayTpfix)
-   .use(LayFlscreen)
+//import { MuhSku, MuhPopup, LayTpfix, LayFlscreen } from './lib/muh'
+//Vue.use(MuhSku)
+// .use(MuhPopup)
+// .use(LayTpfix)
+// .use(LayFlscreen)
+import { Demo, MCascader } from './lib/muh'
+Vue.use(Demo)
+   .use(MCascader)
    
 Vue.mixin(mixinBase)
 
