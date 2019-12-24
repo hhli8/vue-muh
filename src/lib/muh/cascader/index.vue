@@ -1,6 +1,6 @@
 <template>
   <div class="muh-cascader" :class="option.show?'is-focus':''" @click="stop($event)">
-    <input ref="input" class="muh-cascader-input" v-model="cascaderValue" type="text" readonly="readonly" placeholder="请选择" @focus="onfocus" @blur="onblur" @click="inputClick" @mousedown="mouseDown"/>
+    <input ref="input" class="muh-cascader-input" v-model="cascaderValue" type="text" readonly="readonly" placeholder="请选择" @focus="onfocus" @click="inputClick" @mousedown="mouseDown"/>
     <div ref="cascader" class="muh-cascader-content" v-show="option.show">
       <div class="muh-cascader-menu" v-for="(item, index) in crlist" :key="index">
         <div class="menu-item" v-for="(sitem, sindex) in item.data" :class="sindex===item.index?'index-act':''" :key="sindex" @click="onClickItem($event, sitem, sindex, index)">
@@ -22,8 +22,7 @@ export default {
       option: {
         show: false
       },
-      cascaderValue: '',
-      focusAction: false // input是否聚焦中
+      cascaderValue: ''
     }
   },
   watch: {
@@ -46,12 +45,11 @@ export default {
       }]
     },
     onfocus () {
-      this.option.show = true
+      if (!this.mousedowned) {
+        this.option.show = true
+      }
+      this.mousedowned = false
       // console.log('focus')
-      this.focusAction = true
-    },
-    onblur () {
-      this.focusAction = false
     },
     setClose (e) {
       this.option.show = false
@@ -81,17 +79,18 @@ export default {
       e.stopPropagation()
     },
     mouseDown () {
-      /* console.log('down')
-      if (this.focusAction && this.option.show) {
-        // this.option.show = false
-      }
-      if (this.focusAction && this.option.show) {
-        console.log('已经聚焦过啦')
+      // console.log('down')
+      if (this.option.show) {
+        // 如果是显示的，则变为不显示
         this.option.show = false
-      } */
+        // 假如执行了这边，那么focus那边不要再执行
+        this.mousedowned = true
+      } else {
+        this.option.show = true
+      }
     },
     inputClick () {
-      //
+      // console.log('click')
     }
   }
 }
