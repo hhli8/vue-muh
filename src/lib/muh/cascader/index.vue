@@ -1,5 +1,5 @@
 <template>
-  <div class="muh-cascader" :class="option.show?'is-focus':''" @click="stop($event)">
+  <div class="muh-cascader" ref="muhcascader" :class="option.show?'is-focus':''" @click="stop($event)">
     <input ref="input" class="muh-cascader-input" v-model="cascaderValue" type="text" readonly="readonly" placeholder="请选择" @focus="onfocus" @click="inputClick" @mousedown="mouseDown"/>
     <div ref="cascader" class="muh-cascader-content" v-show="option.show">
       <div class="muh-cascader-menu" v-for="(item, index) in crlist" :key="index">
@@ -52,7 +52,11 @@ export default {
       // console.log('focus')
     },
     setClose (e) {
-      this.option.show = false
+      // 解决注册多个同组件的时候关闭问题  bug:点击另外一个的时候，其他的没有关闭掉
+      if (!(e.target === this.$refs.muhcascader || this.$refs.muhcascader.contains(e.target))) {
+        this.option.show = false
+      }
+      // this.option.show = false
     },
     onClickItem (e, item, sindex, findex) {
       let children = item.children
@@ -76,7 +80,7 @@ export default {
       }
     },
     stop (e) {
-      e.stopPropagation()
+      // e.stopPropagation()
     },
     mouseDown () {
       // console.log('down')
@@ -97,3 +101,4 @@ export default {
 </script>
 
 <style lang="scss" scoped="scoped" src="./index.scss"></style>
+

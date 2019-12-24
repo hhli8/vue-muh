@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './routes'
 
 import mixinBase from '@/mixins/base'
+
 //import { keyboard, loading } from './lib/index.js'
 //Vue.use(keyboard)
 // .use(loading)
@@ -17,11 +18,16 @@ import mixinBase from '@/mixins/base'
 // .use(MuhPopup)
 // .use(LayTpfix)
 // .use(LayFlscreen)
-import { Demo, MCascader } from './lib/muh'
+import { Demo, MCascader, MSku } from './lib/muh'
 Vue.use(Demo)
    .use(MCascader)
+   .use(MSku)
    
 Vue.mixin(mixinBase)
+
+// highlight.js代码高亮插件
+import Highlight from '@/util/highlight'
+Vue.use(Highlight)
 
 new Vue({
   el: '#app',

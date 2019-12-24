@@ -1,9 +1,11 @@
 import Demo from './demo'
 import MCascader from './cascader'
+import MSku from './sku'
 
 let components = [
   Demo,
-  MCascader
+  MCascader,
+  MSku
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -12,5 +14,6 @@ components.forEach((item) => {
 })
 export {
   Demo,
-  MCascader
+  MCascader,
+  MSku
 }

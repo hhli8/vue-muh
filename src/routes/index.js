@@ -19,6 +19,11 @@ export default new Router({
       name: 'Cascader',
       component: resolve => { require(['@/views/muh/cascader'], resolve) }
     },
+    {
+      path: '/sku',
+      name: 'Sku',
+      component: resolve => { require(['@/views/muh/sku'], resolve) }
+    }
 //  {
 //    path: '/button',
 //    name: 'subButton',

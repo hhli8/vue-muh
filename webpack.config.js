@@ -28,6 +28,10 @@ module.exports = {
         ],
       },
       {
+        test: /\.txt$/,
+        use: 'raw-loader'
+      },
+      {
         test: /\.scss$/,
         use: [
           'vue-style-loader',

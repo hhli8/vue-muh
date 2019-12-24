@@ -52,6 +52,17 @@ export default {
       } else {
         return false
       }
+    },
+    htmlEncode (str) {
+      var s = ""
+      str = str || ''
+      if (str.length == 0) return ''
+      s = str.replace(/<pre><code([\s\S]*?)<\/code><\/pre>/ig, function (i,a) {
+        // console.log('i====',i,'\n a==========',a)
+        // return '<pre><code ' + a.replace(/</ig, "&lt;").replace(/>/ig, "&gt;") + '</code><\/pre>'
+        return '<pre><code ' + a.replace(/</ig, "&lt;")+ '</code><\/pre>'
+      })
+      return s
     }
   }
 }
