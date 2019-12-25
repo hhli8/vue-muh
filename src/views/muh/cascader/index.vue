@@ -6,14 +6,10 @@
     <!--<muh-cascader></muh-cascader>-->
     <!--<muhcascader></muhcascader>   err-->
     <br /><br /><br /><br /><br />
-    <muhCascader :list="list2"></muhCascader>
+    <muhCascader :list="list2" v-model="value"></muhCascader>
     
     <div id="codeView" v-highlight v-html='htmlEncode(code)'></div>
     
-    
-    <div>
-      待完成：参数格式自定义
-    </div>
   </div>
 </template>
 
@@ -27,6 +23,7 @@ export default {
     return {
       list: [],
       list2: [],
+      value: ['衣服', '女装', '上衣'],
       code: ''
     }
   },

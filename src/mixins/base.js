@@ -63,6 +63,17 @@ export default {
         return '<pre><code ' + a.replace(/</ig, "&lt;")+ '</code><\/pre>'
       })
       return s
+    },
+    isArray (value) {
+      if (typeof Array.isArray === 'function') {
+        return Array.isArray(value)
+      } else {
+        return Object.prototype.toString.call(value) === '[object Array]'
+      }
+    },
+    clone (value) {
+      // console.log(value)
+      return JSON.parse(JSON.stringify(value))
     }
   }
 }

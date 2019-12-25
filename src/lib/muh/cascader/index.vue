@@ -14,7 +14,10 @@
 <script>
 export default {
   name: 'muhCascader',
-  props: ['list'],
+  props: ['list', 'value'],
+  model: {
+    prop: 'value'
+  },
   data () {
     return {
       crlist: [],
@@ -30,6 +33,9 @@ export default {
       this.init()
     }
   },
+  created () {
+    //
+  },
   mounted () {
     window.addEventListener('click', this.setClose, false)
   },
@@ -43,6 +49,41 @@ export default {
         data: this.list,
         index: ''
       }]
+      // 初始化默认值
+      if (!this.isArray(this.value)) return
+      if (this.value && this.value.length) {
+        let clist = []
+        let reslist = []
+        let tag = [this.list]
+        let str = ''
+        let Tag = null
+        for (let index = 0, L = this.value.length; index < L; index++) {
+          let c = this.value[index]
+          Tag = false
+          for (let i = 0, l = tag[index].length; i < l; i++) {
+            if (tag[index][i].categoryName === c) {
+              str += c + (index + 1 === this.value.length ? '' : ' / ')
+              if (tag[index][i].children) tag[index + 1] = tag[index][i].children
+              Tag = true
+              // 列表选中状态处理
+              clist.push({
+                data: tag[index],
+                index: i
+              })
+              reslist.push(tag[index][i])
+              break
+            }
+          }
+          if (!Tag) {
+            break
+          }
+        }
+        if (Tag) { 
+          this.cascaderValue = str
+          this.crlist = clist
+          this.reslist = reslist
+        }
+      }
     },
     onfocus () {
       if (!this.mousedowned) {

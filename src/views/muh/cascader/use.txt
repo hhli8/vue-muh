@@ -1,6 +1,8 @@
 <pre><code><muhCascader :list="list"></muhCascader>
 or
-<muh-cascader :list="list"></muh-cascader>
+<muh-cascader :list="list" v-model="value"></muh-cascader>
+
+默认值value: ['衣服', '女装', '上衣']，格式为数组，且需与list对应
 
 list:
 [
