@@ -1,8 +1,10 @@
 <pre><code><muhCascader :list="list"></muhCascader>
 or
-<muh-cascader :list="list" v-model="value"></muh-cascader>
+<muh-cascader :list="list" v-model="value" :nextUpdata="updata"></muh-cascader>
 
 默认值value: ['衣服', '女装', '上衣']，格式为数组，且需与list对应
+
+// updata:点击当前级时，下一级的是否需要更新，也就是取消选中状态,default：false,暂未开发
 
 list:
 [

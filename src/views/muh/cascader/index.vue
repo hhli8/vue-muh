@@ -6,7 +6,7 @@
     <!--<muh-cascader></muh-cascader>-->
     <!--<muhcascader></muhcascader>   err-->
     <br /><br /><br /><br /><br />
-    <muhCascader :list="list2" v-model="value"></muhCascader>
+    <muhCascader :list="list2" v-model="value" :nextUpdata="nextUpdata"></muhCascader>
     
     <div id="codeView" v-highlight v-html='htmlEncode(code)'></div>
     
@@ -24,7 +24,8 @@ export default {
       list: [],
       list2: [],
       value: ['衣服', '女装', '上衣'],
-      code: ''
+      code: '',
+      nextUpdata: false
     }
   },
   created () {

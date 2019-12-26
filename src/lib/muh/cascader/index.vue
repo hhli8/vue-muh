@@ -14,7 +14,24 @@
 <script>
 export default {
   name: 'muhCascader',
-  props: ['list', 'value'],
+  props: {
+    list: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    },
+    value: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    },
+    nextUpdata: {
+      type: Boolean,
+      default: false
+    }
+  },
   model: {
     prop: 'value'
   },
@@ -119,6 +136,9 @@ export default {
         })
         this.option.show = false
       }
+    },
+    needNextUpdata () {
+      //
     },
     stop (e) {
       // e.stopPropagation()
