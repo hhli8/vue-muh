@@ -1,0 +1,26 @@
+<pre><code>
+<muhSku
+  :goodlist="goods"
+  :skulist="skus"
+  :option="skuOption">
+</muhSku>
+or
+<muh-sku
+  :goodlist="goods"
+  :skulist="skus"
+  :option="skuOption">
+</muh-sku>
+
+参数：
+goodlist——商品列表
+skulist——sku列表
+option——配置
+
+goods:
+skus:
+skuOption:
+
+import { MSku } from 'vue-muh'
+Vue.use(MSku)
+   
+</code></pre>

@@ -54,10 +54,10 @@ export default {
     //
   },
   mounted () {
-    window.addEventListener('click', this.setClose, false)
+    document.addEventListener('click', this.setClose, false)
   },
-  destoryed () {
-    window.removeEventListener('click', this.setClose, false)
+  beforeDestroy () {
+    document.removeEventListener('click', this.setClose, false)
   },
   methods: {
     init () {

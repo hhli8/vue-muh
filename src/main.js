@@ -25,7 +25,6 @@ Vue.use(Demo)
    
 Vue.mixin(mixinBase)
 
-// highlight.js代码高亮插件
 import Highlight from '@/util/highlight'
 Vue.use(Highlight)
 
