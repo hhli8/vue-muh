@@ -13,9 +13,28 @@ or
 
 参数：
 goodlist——商品列表
+  skuPvStrs——sku的id拼接字符串，格式为：属性1:值1,属性2:值2.....，若不选改参数需如下
+  skus1——属性值1
+  skus2——属性值2
+  ...index值需一一对应
 skulist——sku列表
+  imgUrl——sku的图片，非必
+  pname/自定义——必
+  pid/自定义——必
+  values/自定义——必
+    vname/自定义——必
+    vid/自定义——必
 option——配置
+  gimg——商品图片
+  gprice——商品价格
+  structure——sku数据结构
+    pname——属性名称，默认键名'pname'
+    pid——属性id，默认键名'pid'
+    chindren——属性的值，默认键名'values'
+    sname——值名称，默认键名'vname'
+    sid——值id，默认键名'vid'
 
+例：
 goods:
 skus:
 skuOption:

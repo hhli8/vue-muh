@@ -28,8 +28,8 @@ export default [
     pid: 3,
     pname: '规格',
     values: [
-      { vid: 601, imgUrl: '', vname: '男' },
-      { vid: 602, imgUrl: '', vname: '女' }
+      { vid: 601, imgUrl: '', vname: '128g' },
+      { vid: 602, imgUrl: '', vname: '256g' }
     ]
   }
 ]

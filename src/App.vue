@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import skuData from './mock/skudata.js'
+// import skuData from './mock/skudata.js'
 export default {
   name: 'app',
   data () {

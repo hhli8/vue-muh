@@ -28,14 +28,23 @@ export default {
   },
   created () {
   	this.code = usecode
+  	setTimeout(() => {
+  	  this.goods = goods
+  	}, 1000)
     setTimeout(() => {
-    	this.goods = goods
+    	// this.goods = goods
     	this.skus = skus
-    	this.option = {
+    	this.skuOption = {
     		stockflag: false, // 是否开启库存逻辑，默认值为false
     		structure: {
-    			
-    		}
+    			pname: '', // sku父的名称
+    			pid: '',
+    			chindren: '', // sku子的对象
+    			cname: '', // sku子的名称
+    			cid: ''
+    		},
+    		gimg: 'https://cbu01.alicdn.com/img/ibank/2018/420/661/8608166024_582723176.jpg', // 默认图片
+    	  gprice: '319~568'
     	}
 //    this.goods = skuData.goods
 //    this.skus = skuData.skus
