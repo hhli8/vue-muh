@@ -1,11 +1,15 @@
 import Demo from './demo'
 import MCascader from './cascader'
 import MSku from './sku'
+import MPopup from './popup'
+import MBubble from './bubble'
 
 let components = [
   Demo,
   MCascader,
-  MSku
+  MSku,
+  MPopup,
+  MBubble
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -15,5 +19,7 @@ components.forEach((item) => {
 export {
   Demo,
   MCascader,
-  MSku
+  MSku,
+  MPopup,
+  MBubble
 }

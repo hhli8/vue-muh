@@ -1,0 +1,13 @@
+<pre><code><muhPopup v-model="show"></muhPopup>
+or
+<muh-popup v-model="show">
+  // <!--slot---插槽-->
+</muh-popup>
+
+show:
+  Boolean
+
+import { MPopup } from 'vue-muh'
+Vue.use(MPopup)
+   
+</code></pre>

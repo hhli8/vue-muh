@@ -12,7 +12,19 @@
 <script>
 export default {
   name: 'muhPopup',
-  props: ['show', 'position'],
+  props: {
+    show: {
+      type: Boolean,
+      default: false
+    },
+    position: {
+      type: String,
+      default: 'bottom'
+    }
+  },
+  model: {
+    prop: 'show'
+  },
   data () {
     return {
       elshow: false,
@@ -21,22 +33,12 @@ export default {
       opacity: 0
     }
   },
-  computed: {
-    myshow: {
-      get () {
-        return this.show
-      },
-      set (newValue) {
-        this.close()
-      }
-    }
-  },
   watch: {
-    myshow (val) {
-      if (val) {
+    show (value) {
+      if (value) {
         this.open()
       } else {
-        // console.log(111)
+        this.close()
       }
     }
   },
@@ -48,25 +50,25 @@ export default {
   },
   methods: {
     open () {
-      this.elshow = true
-      this.opacity = 1
+      this.elshow = true // 弹窗元素显示出来，透明影藏
+      this.opacity = 1 // 处理初始化时底部元素下滑效果
       setTimeout(() => {
-        this.bottom = 0
-        this.uishow = true
+        this.bottom = 0 // 定位改变
+        this.uishow = true // 遮罩元素取消透明
         this.addClass(document.body, 'muh-overflow-hidden')
       }, 50)
     },
     close () {
       this.bottom = -this.$refs.muhPopup.clientHeight
-      this.uishow = false
+      this.uishow = false // 遮罩元素透明度0
       setTimeout(() => {
         this.elshow = false
-        this.$emit('close')
+        // this.$emit('close')
         this.removeClass(document.body, 'muh-overflow-hidden')
       }, 300)
     },
     overlayClick () {
-      this.myshow = false
+      this.$emit('input', false)
     }
   }
 }

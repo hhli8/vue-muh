@@ -2,7 +2,7 @@
 
 > A Vue.js project  ui功能移动端组件库
 
-# 使用说明
+# 发布更新说明
 1、webpack.config.js
 entry配置切换，打包发布和本地
 2、npm build,npm login,npm publish

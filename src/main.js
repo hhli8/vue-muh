@@ -18,10 +18,12 @@ import mixinBase from '@/mixins/base'
 // .use(MuhPopup)
 // .use(LayTpfix)
 // .use(LayFlscreen)
-import { Demo, MCascader, MSku } from './lib/muh'
+import { Demo, MCascader, MSku, MPopup, MBubble } from './lib/muh'
 Vue.use(Demo)
    .use(MCascader)
    .use(MSku)
+   .use(MPopup)
+   .use(MBubble)
    
 Vue.mixin(mixinBase)
 

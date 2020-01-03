@@ -23,6 +23,16 @@ export default new Router({
       path: '/sku',
       name: 'Sku',
       component: resolve => { require(['@/views/muh/sku'], resolve) }
+    },
+    {
+      path: '/popup',
+      name: 'Popup',
+      component: resolve => { require(['@/views/muh/popup'], resolve) }
+    },
+    {
+      path: '/bubble',
+      name: 'Bubble',
+      component: resolve => { require(['@/views/muh/bubble'], resolve) }
     }
 //  {
 //    path: '/button',
@@ -34,11 +44,7 @@ export default new Router({
 //    name: 'funSku',
 //    component: resolve => { require(['@/views/fun/sku.vue'], resolve) }
 //  },
-//  {
-//    path: '/popup',
-//    name: 'funPopup',
-//    component: resolve => { require(['@/views/fun/popup.vue'], resolve) }
-//  },
+
 //  {
 //    path: '/layout_topfixed',
 //    name: 'layoutTopfixed',
