@@ -54,7 +54,7 @@ export default {
     }
   },
   created () {
-    setTimeout(() => {
+    /* setTimeout(() => {
       this.goods = skuData.goods
       this.skus = skuData.skus
       this.skuOption = {
@@ -78,7 +78,7 @@ export default {
           }
         }
       }
-    }, 500)
+    }, 500) */
     // this.registerVconsole()
   },
   mounted () {

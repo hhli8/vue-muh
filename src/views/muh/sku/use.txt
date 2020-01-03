@@ -1,5 +1,6 @@
 <pre><code>
 <muhSku
+  ref="muhsku"
   :goodlist="goods"
   :skulist="skus"
   :option="skuOption">
@@ -17,29 +18,89 @@ goodlist——商品列表
   skus1——属性值1
   skus2——属性值2
   ...index值需一一对应
+  curprice——价格
 skulist——sku列表
-  imgUrl——sku的图片，非必
+  imgUrl——sku的图片，非必，但某个sku需有
   pname/自定义——必
-  pid/自定义——必
+  pid/自定义——必，不可重复(同级或者非同级)
   values/自定义——必
     vname/自定义——必
-    vid/自定义——必
+    vid/自定义——必，不可重复(同级或者非同级)
 option——配置
-  gimg——商品图片
-  gprice——商品价格
-  structure——sku数据结构
+  gimg——商品图片，必
+  gprice——商品价格，必
+  structure——sku数据结构，非必
     pname——属性名称，默认键名'pname'
     pid——属性id，默认键名'pid'
     chindren——属性的值，默认键名'values'
     sname——值名称，默认键名'vname'
     sid——值id，默认键名'vid'
+    price——goodlist里的商品价格属性名，默认键名'price'
 
 例：
 goods:
+  [
+    { skuPvStrs: '', skuCode: 'dwsasd12345678', skus1: '387', skus2: '702', skus3: '601', stock_num: 0, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'dwsasd12345679', skus1: '388', skus2: '702', skus3: '601', stock_num: 10, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'swsasd12345678', skus1: '387', skus2: '703', skus3: '601', stock_num: 0, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'swsasd12345679', skus1: '388', skus2: '703', skus3: '601', stock_num: 10, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'swsasd123456710', skus1: '389', skus2: '703', skus3: '601', stock_num: 10, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'dwsasd12345678f', skus1: '387', skus2: '702', skus3: '602', stock_num: 0, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'dwsasd12345679f', skus1: '388', skus2: '702', skus3: '602', stock_num: 10, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'dwsasd123456710f', skus1: '389', skus2: '702', skus3: '602', stock_num: 10, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'swsasd12345678f', skus1: '387', skus2: '703', skus3: '602', stock_num: 0, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'swsasd12345679f', skus1: '388', skus2: '703', skus3: '602', stock_num: 10, curprice: '308' },
+    { skuPvStrs: '', skuCode: 'swsasd123456710f', skus1: '389', skus2: '703', skus3: '602', stock_num: 10, curprice: '308' }
+  ]
 skus:
+  [
+    {
+      pid: 1,
+      pname: '颜色',
+      values: [
+        { vid: 387, "imgUrl": "https://cbu01.alicdn.com/img/ibank/2018/420/661/8608166024_582723176.jpg", "vname": "卡其色" },
+        { vid: 388, "imgUrl": "https://cbu01.alicdn.com/img/ibank/2018/237/640/8673046732_582723176.jpg", "vname": "白色" },
+        { vid: 389, "imgUrl": "https://cbu01.alicdn.com/img/ibank/2018/741/751/8608157147_582723176.jpg", "vname": "黄色" }
+      ]
+    },
+    {
+      pid: 2,
+      pname: '尺寸',
+      values: [
+        { vid: 701, imgUrl: '', vname: 'S' },
+        { vid: 702, imgUrl: '', vname: 'SL' },
+        { vid: 703, imgUrl: '', vname: 'SLL' }
+      ]
+    },
+    {
+      pid: 3,
+      pname: '规格',
+      values: [
+        { vid: 601, imgUrl: '', vname: '128g' },
+        { vid: 602, imgUrl: '', vname: '256g' }
+      ]
+    }
+  ]
 skuOption:
+  structure: {
+    pname: '',
+    pid: '',
+    chindren: '',
+    cname: '',
+    cid: '',
+    price: 'curprice'
+  },
+  gimg: 'https://cbu01.alicdn.com/img/ibank/2018/420/661/8608166024_582723176.jpg', // 默认图片
+  gprice: '319~568'
+  
+父方法：
+  confirm
+  this.$refs.muhsku.confirm
+     返回参数：skuArr(选中的sku)，good(选中的商品)
 
 import { MSku } from 'vue-muh'
 Vue.use(MSku)
+
+待开发：库存功能
    
 </code></pre>

@@ -4,7 +4,7 @@
       <div class="good-img"><img :src="good_img" alt="" /></div>
       <div class="good-info">
         <div class="price">¥{{good_price}}</div>
-        <div class="stock">库存116件</div>
+        <!--<div class="stock">库存116件</div>-->
         <div class="txt">{{skuChoseText}}</div>
       </div>
     </div>
@@ -59,6 +59,9 @@ export default {
   	},
   	sid () {
       return (this.option.structure && this.option.structure.sid) || 'vid'
+    },
+    showprice () {
+      return (this.option.structure && this.option.structure.price) || 'price'
     }
   },
   data () {
@@ -66,7 +69,8 @@ export default {
   	  good_img: '', // 商品图片
     	good_price: '', // 价格
     	skuChoseText: '', // 显示已选或未选的参数
-    	seleceProps: [] // 选中的sku-item集合
+    	seleceProps: [], // 选中的sku-item集合
+    	targetGood: ''
   	}
   },
   watch: {
@@ -152,7 +156,7 @@ export default {
       })
       this.dealAfterToggle(item, index, sitem, sindex)
       // 处理选择后的显示标题文案以及价格等
-      // this.dealShowParams()
+      this.dealShowParams()
   	},
   	// sku复点击可以取消时
   	cancelSelectInit () {
@@ -165,8 +169,8 @@ export default {
           resetOver = true
         }
       })
-      if (!resetOver) this.goodimg = obj.degood && obj.degood.img
-      this.good_price = obj.degood && (obj.degood.price / 100).toFixed(2)
+      if (!resetOver) this.good_img = this.option.gimg
+      this.good_price = this.option.gprice
     },
     // 将非同级的spu的item做判断(是否有商品对应)
     dealAfterToggle (item, index, sitem, sindex) {
@@ -192,17 +196,72 @@ export default {
     checkIspitch (good, sitem, indexi) {
       // 循环遍历到的商品，遍历的spu下sku，index
       var tag = true
-      if (Number(good[`skus${indexi + 1}`]) !== Number(sitem[this.sid])) {
-        tag = false
+      if (good.skuPvStrs) {
+        // 如果不包含false
+        if (good.skuPvStrs.indexOf(sitem[this.sid]) === -1) {
+          tag = false
+        }
+      } else {
+        if (Number(good[`skus${indexi + 1}`]) !== Number(sitem[this.sid])) {
+          tag = false
+        }
       }
       // 激活的非同级sku是否和当前good匹配
       this.seleceProps.forEach((item, index) => {
         if (index === indexi) return // 不与自身所在的激活比较
-        if (item && (Number(item[this.sid]) !== Number(good[`skus${index + 1}`]))) {
-          tag = false
+        if (good.skuPvStrs) {
+          if (good.skuPvStrs.indexOf(item[this.sid]) === -1) {
+            tag = false
+          }
+        } else {
+          if (item && (Number(item[this.sid]) !== Number(good[`skus${index + 1}`]))) {
+            tag = false
+          }
         }
       })
       return tag
+    },
+    dealShowParams () {
+      let count = 0
+      let hadtext = ''
+      let notext = ''
+      this.skulist.forEach((item, si) => {
+        if (this.seleceProps[si]) {
+          hadtext += `"${this.seleceProps[si][this.sname]}" `
+          count++
+        } else {
+          notext += item[this.fname] + ' '
+        }
+      })
+      if (count === this.skulist.length) {
+        this.skuChoseText = '已选: ' + hadtext
+        for (var k = 0, l = this.goodlist.length; k < l; k++) {
+          var tag = true
+          // 都符合则 是对应商品
+          for (var i = 0, L = this.seleceProps.length; i < L; i++) {
+            var sku = this.seleceProps[i]
+            if (Number(sku[this.sid]) !== Number(this.goodlist[k][`skus${i + 1}`])) {
+              tag = false
+              break
+            }
+          }
+          if (tag) {
+            this.targetGood = this.goodlist[k]
+            var price = this.goodlist[k][this.showprice]
+            this.good_price = this.goodlist[k][this.showprice]
+            break
+          }
+        }
+      } else {
+        this.skuChoseText = '请选择 ' + notext
+        this.targetGood = ''
+      }
+    },
+    confirm (fun) {
+      fun({
+        skuArr: this.seleceProps,
+        good: this.targetGood
+      })
     },
   	demo () {
   	  //

@@ -2,11 +2,12 @@
   <div>
     <p>this is msku</p>
     <muh-sku
+      ref="muhsku"
       :goodlist="goods"
       :skulist="skus"
       :option="skuOption">
     </muh-sku>
-    
+    <div class="confirm" @click="confirm">确定</div>
     <div id="codeView" v-highlight v-html='htmlEncode(code)'></div>
     
   </div>
@@ -26,6 +27,14 @@ export default {
       code: ''
     }
   },
+  methods: {
+    confirm () {
+      this.$refs.muhsku.confirm((res) => {
+        // console.log(...arguments)
+        // console.log(res)
+      })
+    }
+  },
   created () {
   	this.code = usecode
   	setTimeout(() => {
@@ -41,7 +50,8 @@ export default {
     			pid: '',
     			chindren: '', // sku子的对象
     			cname: '', // sku子的名称
-    			cid: ''
+    			cid: '',
+    			price: 'curprice'
     		},
     		gimg: 'https://cbu01.alicdn.com/img/ibank/2018/420/661/8608166024_582723176.jpg', // 默认图片
     	  gprice: '319~568'
@@ -74,5 +84,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped="scoped">
+.confirm {
+  text-align: center;
+  height: 80px;
+  line-height: 80px;
+  background: #F12E25;
+  color: #fff;
+  font-size: 36px;
+}
 </style>
