@@ -1,0 +1,33 @@
+<pre><code>
+<muhBubble :option="option" :lists="lists"></muhBubble>
+
+<muh-bubble :option="option" :lists="lists">
+  <template slot-scope="props">
+    <div>{{props.row.goodsTitle}}</div>
+  </template>
+</muh-bubble>
+
+option: Object
+  {
+    transtime: 0, // 移动一格时间，可选，默认800
+    intervaltime: 0, // 定时器时间，等待时间，可选，默认1800
+    showcount: 1 // 显示个数，可选，默认2
+  }
+lists: Array
+  [
+    { goodsName: 'name', goodsTitle: '啊实打实大1' },
+    { goodsName: 'name', goodsTitle: '啊实打实大2' },
+    { goodsName: 'name', goodsTitle: '啊实打实大3' },
+    { goodsName: 'name', goodsTitle: '啊实打实大4' },
+    { goodsName: 'name', goodsTitle: '啊实打实大5' },
+    { goodsName: 'name', goodsTitle: '啊实打实大6' },
+    { goodsName: 'name', goodsTitle: '啊实打实大7' },
+    { goodsName: 'name', goodsTitle: '啊实打实大8' },
+    { goodsName: 'name', goodsTitle: '啊实打实大9' },
+    { goodsName: 'name', goodsTitle: '啊实打实大10' }
+  ]
+
+import { MBubble } from 'vue-muh'
+Vue.use(MBubble)
+   
+</code></pre>

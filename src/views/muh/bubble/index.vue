@@ -6,25 +6,28 @@
         <div>{{props.row.goodsTitle}}</div>
       </template>
     </muh-bubble>
+    
+    <div id="codeView" v-highlight v-html='htmlEncode(code)'></div>
   </div>
 </template>
 
 <script>
+import usecode from './use.txt'
 export default {
   data () {
     return {
-      bubble: {}, // 这是什么意思呢
-      lists: []
+      bubble: {},
+      lists: [],
+      code: ''
     }
   },
   created () {
-    var arr = [1, 2, 3, 4, 5]
-    var n = arr.pop()
-    console.log(n)
+    this.code = usecode
     setTimeout(() => {
       this.bubble = {
         transtime: 0, // 移动一格时间
-        intervaltime: 0 // 定时器时间，等待时间
+        intervaltime: 0, // 定时器时间，等待时间
+        showcount: 1
       }
       this.lists = [
         { goodsName: 'name', goodsTitle: '啊实打实大1' },

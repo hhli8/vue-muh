@@ -33,6 +33,11 @@ export default new Router({
       path: '/bubble',
       name: 'Bubble',
       component: resolve => { require(['@/views/muh/bubble'], resolve) }
+    },
+    {
+      path: '/lottery',
+      name: 'Lottery',
+      component: resolve => { require(['@/views/muh/lottery'], resolve) }
     }
 //  {
 //    path: '/button',
