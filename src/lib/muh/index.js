@@ -3,7 +3,7 @@ import MCascader from './cascader'
 import MSku from './sku'
 import MPopup from './popup'
 import MBubble from './bubble'
-import MLottery from './lottery/draw.vue'
+import MLottery from './lottery'
 
 let components = [
   Demo,

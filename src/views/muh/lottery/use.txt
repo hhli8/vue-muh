@@ -1,0 +1,36 @@
+<pre><code>
+<muhLottery :prize="prize2" :count="leftcount" :prizeKey="'prizeNo'" :prizeTarget="prizeTarget" @stop="stop">
+  <template slot-scope="props"></template>
+</muhLottery>
+
+<muh-lottery :prize="prize2" :count="leftcount" :prizeKey="'prizeNo'" :prizeTarget="prizeTarget" @stop="stop">
+  <template slot-scope="props">
+    <div class="choujiang" v-if="props.index === 4" @click="chou">抽奖</div>
+    <div class="item-prize" v-else>奖品</div>
+  </template>
+</muh-lottery>
+
+prize：// 奖品列表，数组，长度8
+  [
+    {"prizeNo":"1","prizeImage":"https://cdn.xiaoxiangyoupin.com/prod/upload/manager/190x160_1022655554952105984.png","prizeTitle":"椰子350"},
+    {"prizeNo":"2","prizeImage":"https://cdn.xiaoxiangyoupin.com/prod/upload/manager/190x160_1022655635193335808.png","prizeTitle":"12期免息券"},
+    {"prizeNo":"3","prizeImage":"https://cdn.xiaoxiangyoupin.com/prod/upload/manager/190x160_1022655659142811648.png","prizeTitle":"PINKO 燕子包"},
+    {"prizeNo":"4","prizeImage":"https://cdn.xiaoxiangyoupin.com/prod/upload/manager/190x160_1022655703178809344.png","prizeTitle":"SKII 神仙水"},
+    {"prizeNo":"5","prizeImage":"https://cdn.xiaoxiangyoupin.com/prod/upload/manager/190x160_1022655674003230720.png","prizeTitle":"30元满减券"},
+    {"prizeNo":"6","prizeImage":"https://cdn.xiaoxiangyoupin.com/prod/upload/manager/190x160_1022655728420130816.png","prizeTitle":"10元优惠券"},
+    {"prizeNo":"7","prizeImage":"https://cdn.xiaoxiangyoupin.com/prod/upload/manager/190x160_1022655745369313280.png","prizeTitle":"黑天鹅项链"},
+    {"prizeNo":"8","prizeImage":"https://cdn.xiaoxiangyoupin.com/prod/upload/manager/190x160_1022655768190521344.png","prizeTitle":"DHC 润唇膏"}
+  ]
+count：// 剩余次数
+prizeTarget：// 中奖对象
+  {
+    prizeNo: '6'
+  }
+prizeKey：
+  中奖对象的键值
+stop：// 停止后回调事件，返回中奖对象
+
+import { MLottery } from 'vue-muh'
+Vue.use(MLottery)
+   
+</code></pre>
