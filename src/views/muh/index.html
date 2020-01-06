@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Canvas半圆环进度条动画特效 - A5源码</title>
+
+<style>
+.ring {
+	width: 300px;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+}
+
+.fraction {
+	position: absolute;
+	font-size: 30px;
+	font-weight: bold;
+	color: #00ABEB;
+}
+
+.small {
+	font-size: 12px;
+	font-weight: lighter;
+}
+
+.title {
+	font-size: 20px;
+	color: #00ABEB;
+	bottom: 40px;
+	position: absolute;
+}
+</style>
+
+</head>
+<body>
+
+<div class="ring">
+	<canvas id="tutorial"></canvas>
+	<span class="fraction"><span class="number">0</span> <span class="small">%</span> </span>
+	<span class="title">已领优惠券</span>
+</div>
+
+<script>
+	let radius = 95 //外环半径
+	let thickness = 10 //圆环厚度
+	let innerRadius = radius - thickness //内环半径
+//	let startAngle = -90 //开始角度
+//	let endAngle = 180 //结束角度
+let startAngle = -90 //开始角度
+  let endAngle = 180 //结束角度
+	let x = 0 //圆心x坐标
+	let y = 0 //圆心y坐标
+	let canvas = document.getElementById('tutorial');
+	canvas.width = 300;
+	canvas.height = 300;
+
+	let ctx = canvas.getContext('2d');
+	ctx.translate(canvas.width / 2, canvas.height / 2); //将绘图原点移到画布中央
+	ctx.rotate(angle2Radian(225)) //将画布旋转225度
+	ctx.fillStyle = "#eee"; //初始填充颜色
+	renderRing(startAngle, endAngle)
+
+	//渲染函数
+	function renderRing(startAngle, endAngle) {
+		ctx.beginPath();
+
+		//绘制外环
+		ctx.arc(x, y, radius, angle2Radian(startAngle), angle2Radian(endAngle))
+
+		//计算外环与内环第一个连接处的中心坐标
+		let oneCtrlPoint = calcRingPoint(x, y, innerRadius + thickness / 2, endAngle)
+
+		//绘制外环与内环第一个连接处的圆环
+		ctx.arc(oneCtrlPoint.x, oneCtrlPoint.y, thickness / 2, angle2Radian(-90), angle2Radian(270))
+
+		// //绘制内环
+		ctx.arc(x, y, innerRadius, angle2Radian(endAngle), angle2Radian(startAngle), true)
+
+		//计算外环与内环第二个连接处的中心坐标
+		let twoCtrlPoint = calcRingPoint(x, y, innerRadius + thickness / 2, startAngle)
+
+		//绘制外环与内环第二个连接处的圆环
+		ctx.arc(twoCtrlPoint.x, twoCtrlPoint.y, thickness / 2, angle2Radian(-90), angle2Radian(270))
+
+		ctx.fill()
+			// ctx.stroke()
+	}
+
+	//计算圆环上点的坐标
+	function calcRingPoint(x, y, radius, angle) {
+		let res = {}
+		res.x = x + radius * Math.cos(angle * Math.PI / 180)
+		res.y = y + radius * Math.sin(angle * Math.PI / 180)
+		return res
+	}
+
+	//弧度转角度
+	function radian2Angle(radian) {
+		return 180 * radian / Math.PI
+	}
+
+	//角度转弧度
+	function angle2Radian(angle) {
+		return angle * Math.PI / 180
+	}
+
+
+	//进度条颜色
+	var lingrad = ctx.createLinearGradient(0, 0, 150, 0);
+	lingrad.addColorStop(0, '#00ABEB');
+	lingrad.addColorStop(1, '#fff');
+	ctx.fillStyle = lingrad
+
+	//开始绘画
+	let tempAngle = startAngle
+	let total = 1000 //总分
+	let now = 900 //当前分数
+	let percent = now / total //百分比
+	let twoEndAngle = percent * 270 + startAngle
+	let step = (twoEndAngle - startAngle) / 80
+	let numberSpan = document.querySelector('.number')
+	let inter = setInterval(() => {
+		if (tempAngle > twoEndAngle) {
+			clearInterval(inter)
+		} else {
+			numberSpan.innerText = percent * 100
+			tempAngle += step
+		}
+		renderRing(startAngle, tempAngle)
+	}, 20)
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Opera、傲游、搜狗、世界之窗. 不支持Safari、IE8及以下浏览器。</p>
+<p>来源：<a href="http://www.a5xiazai.com/" target="_blank">A5源码</a></p>
+</div>
+</body>
+</html>

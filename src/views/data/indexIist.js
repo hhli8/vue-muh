@@ -4,7 +4,8 @@ const List = [
   { name: 'sku选择', path: 'Sku' },
   { name: '弹窗', path: 'Popup' },
   { name: '冒泡轮播', path: 'Bubble' },
-  { name: '九宫格抽奖', path: 'Lottery' }
+  { name: '九宫格抽奖', path: 'Lottery' },
+  { name: '渐变进度圆环', path: 'Circle' }
 ]
 
 export default List

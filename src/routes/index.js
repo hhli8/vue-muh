@@ -38,6 +38,11 @@ export default new Router({
       path: '/lottery',
       name: 'Lottery',
       component: resolve => { require(['@/views/muh/lottery'], resolve) }
+    },
+    {
+      path: '/circle',
+      name: 'Circle',
+      component: resolve => { require(['@/views/muh/canvas'], resolve) }
     }
 //  {
 //    path: '/button',
