@@ -1,0 +1,24 @@
+<pre><code>
+<muhCircle :option="option"></muhCircle>
+
+<muh-circle :option="option"></muh-circle>
+
+option: Object
+  {
+    width: 300, // 宽
+    height: 300, // 高
+    start: 0, // 起点角度
+    end: 360, // 结束角度
+    tcoclor: 'red', // 渐变色顶部
+    bcolor: '#fff', // 渐变色底部
+    outradius: 85, // 外半径
+    thickness: 10, // 圈宽
+    percent: 98, // 进度
+    distance: 100, // 间距，越大，速度越小
+    mwidth: 340 // 设计稿默认宽度
+  }
+
+import { MCircle } from 'vue-muh'
+Vue.use(MCircle)
+   
+</code></pre>

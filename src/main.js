@@ -18,13 +18,14 @@ import mixinBase from '@/mixins/base'
 // .use(MuhPopup)
 // .use(LayTpfix)
 // .use(LayFlscreen)
-import { Demo, MCascader, MSku, MPopup, MBubble, MLottery } from './lib/muh'
+import { Demo, MCascader, MSku, MPopup, MBubble, MLottery, MCircle } from './lib/muh'
 Vue.use(Demo)
    .use(MCascader)
    .use(MSku)
    .use(MPopup)
    .use(MBubble)
    .use(MLottery)
+   .use(MCircle)
    
 Vue.mixin(mixinBase)
 

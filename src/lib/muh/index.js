@@ -4,6 +4,7 @@ import MSku from './sku'
 import MPopup from './popup'
 import MBubble from './bubble'
 import MLottery from './lottery'
+import MCircle from './canvas/circle'
 
 let components = [
   Demo,
@@ -11,7 +12,8 @@ let components = [
   MSku,
   MPopup,
   MBubble,
-  MLottery
+  MLottery,
+  MCircle
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -24,5 +26,6 @@ export {
   MSku,
   MPopup,
   MBubble,
-  MLottery
+  MLottery,
+  MCircle
 }

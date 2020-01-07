@@ -67,7 +67,7 @@ export default {
       }
     }
   },
-  destroy () {
+  beforeDestroy () {
     clearInterval(this.time)
     this.time = null
   },

@@ -42,7 +42,12 @@ export default new Router({
     {
       path: '/circle',
       name: 'Circle',
-      component: resolve => { require(['@/views/muh/canvas'], resolve) }
+      component: resolve => { require(['@/views/muh/canvas/circle'], resolve) }
+    },
+    {
+      path: '/layout_demo1',
+      name: 'Layout_demo1',
+      component: resolve => { require(['@/views/muh/layout/demo1'], resolve) }
     }
 //  {
 //    path: '/button',
