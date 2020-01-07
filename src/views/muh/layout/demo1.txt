@@ -1,0 +1,17 @@
+<pre><code>
+
+<div id="f">
+  <div id="s"></div>
+</div>
+
+#f {
+  height: 300px;
+  width: 80%;
+}
+#s {
+  width: 40%;
+  height: 0;
+  padding-bottom: 40%;
+}
+   
+</code></pre>

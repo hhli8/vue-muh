@@ -6,7 +6,8 @@ const List = [
   { name: '冒泡轮播', path: 'Bubble' },
   { name: '九宫格抽奖', path: 'Lottery' },
   { name: '渐变进度圆环', path: 'Circle' },
-  { name: '布局-css控制元素子根据父宽', path: 'Layout_demo1' }
+  { name: '布局-css控制元素子根据父宽', path: 'Layout_demo1' },
+  { name: '布局-页面折角', path: 'Layout_demo2' }
 ]
 
 export default List

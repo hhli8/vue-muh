@@ -48,6 +48,11 @@ export default new Router({
       path: '/layout_demo1',
       name: 'Layout_demo1',
       component: resolve => { require(['@/views/muh/layout/demo1'], resolve) }
+    },
+    {
+      path: '/layout_demo2',
+      name: 'Layout_demo2',
+      component: resolve => { require(['@/views/muh/layout/demo2'], resolve) }
     }
 //  {
 //    path: '/button',

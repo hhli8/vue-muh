@@ -7,12 +7,21 @@
         end
       </div>
     </div>
+    <div id="codeView" v-highlight v-html='htmlEncode(code)'></div>
   </div>
 </template>
 
 <script>
+import usecode from './demo1.txt'
 export default {
-  //
+  data () {
+    return {
+      code: ''
+    }
+  },
+  created () {
+    this.code = usecode
+  }
 }
 </script>
 
