@@ -53,6 +53,26 @@ export default new Router({
       path: '/layout_demo2',
       name: 'Layout_demo2',
       component: resolve => { require(['@/views/muh/layout/demo2'], resolve) }
+    },
+    {
+      path: '/cssshine',
+      name: 'CssShine',
+      component: resolve => { require(['@/views/muh/shine'], resolve) }
+    },
+    {
+      path: '/cssscrollsnap',
+      name: 'CssScrollSnap',
+      component: resolve => { require(['@/views/muh/css/snap'], resolve) }
+    },
+    {
+      path: '/splittingjs',
+      name: 'SplittingJs',
+      component: resolve => { require(['@/views/muh/splitting'], resolve) }
+    },
+    {
+      path: '/test',
+      name: 'kkk',
+      component: resolve => { require(['@/views/muh/shine'], resolve) }
     }
 //  {
 //    path: '/button',

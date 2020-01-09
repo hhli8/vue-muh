@@ -1,0 +1,16 @@
+<pre><code>
+<ul>
+  <li>赵</li>
+  <li>钱</li>
+  <li>孙</li>
+  <li>李</li>
+  <li>周</li>
+  <li>吴</li>
+  <li>郑</li>
+</ul>
+
+css:
+ 父-scroll-snap-type: y mandatory;
+ 子-scroll-snap-align: start/end/center;
+   
+</code></pre>

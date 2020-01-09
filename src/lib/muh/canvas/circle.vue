@@ -72,7 +72,8 @@ export default {
     this.init()
   },
   beforeDestroy () {
-    clearInterval(this.inter)
+    // clearInterval(this.inter)
+    cancelAnimationFrame(this.inter)
     this.inter = null
   },
   methods: {
@@ -101,7 +102,7 @@ export default {
       let percent = this.percent / 100
       let twoEndAngle = percent * (this.end - this.start) + this.start
       let step = (twoEndAngle - this.start) / this.distance
-      this.inter = setInterval(() => {
+      /* this.inter = setInterval(() => {
         if (tempAngle > twoEndAngle) {
           clearInterval(this.inter)
           this.inter = null
@@ -109,7 +110,19 @@ export default {
           tempAngle += step
         }
         this.render(ctx, this.start, tempAngle)
-      }, 20)
+      }, 20) */
+      let the = this
+      if (window.requestAnimationFrame) {
+        this.inter = window.requestAnimationFrame(function fn () {
+          if (tempAngle > twoEndAngle) {
+            cancelAnimationFrame(the.inter)
+          } else {
+            tempAngle += step
+            the.inter = window.requestAnimationFrame(fn)
+          }
+          the.render(ctx, the.start, tempAngle)
+        })
+      }
     },
     render (t, s, e) {
       t.beginPath()

@@ -1,0 +1,21 @@
+<pre><code>
+<button class="o-btn" @click="open">打开</button>
+<div class="target" ref="target">
+  start<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />啦啦啦啦啦啦啦啦啦<br />end
+</div>
+
+.target {
+    background: yellowgreen;
+    color: #fff;
+    transform-origin: top left;
+    transition: transform 0.5s linear;
+}
+.target.move {
+    transform: rotate(-20deg);
+}
+
+open () {
+  this.addClass(this.$refs.target, 'move')
+}
+   
+</code></pre>

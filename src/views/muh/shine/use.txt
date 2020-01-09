@@ -1,0 +1,22 @@
+<pre><code>
+<div class="glitter">
+  <img src="./demo.jpg" alt="" />
+</div>
+
+css:
+  .glitter {
+    position: relative;
+  }
+  .glitter:before {
+    content: ' ';
+    position: absolute;
+    background: linear-gradient...
+    width
+    height
+    animation: move ...
+  }
+  @keyframes move { 
+    ...
+  }
+   
+</code></pre>

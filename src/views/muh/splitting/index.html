@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src='js/splitting.min.js'></script>
+    <script src="js/script.js"></script>
+    <style>
+      $colors: #f9ca24, #3498db, #ff7979, #1abc9c, #e74c3c, #f8c291;
+      .headline {
+        align-items: center;
+        background-color: var(--color);
+        display: flex;
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 700;
+        font-size: calc(1rem + 15vmin);
+        height: 100vh;
+        justify-content: center;
+        overflow: hidden;
+        perspective: 1000px;
+        scroll-snap-align: start;
+        width: 100vw;
+        
+        @for $i from 1 through length($colors) {
+          &:nth-child(#{$i}) {
+            --color: #{nth($colors, $i)};
+          }
+        }
+      }
+      .headline:nth-child(1) {
+        --color: #e74c3c;
+      }
+      .headline:nth-child(2) {
+        --color: #f5f6fa;
+      }
+      .headline:nth-child(3) {
+        --color: #48dbfb;
+      }
+      .headline:nth-child(4) {
+        --color: #9980FA;
+      }
+      .headline:nth-child(5) {
+        --color: #F79F1F;
+      }
+      .headline:nth-child(6) {
+        --color: #f8c291;
+      }
+    </style>
+	</head>
+	<body>
+	  <main class="container">
+      <h2 data-splitting class="headline headline--yell">yelling</h2>
+      <h2 data-splitting class="headline headline--ghost">ghosting</h2>
+      <h2 data-splitting class="headline headline--sail">sailing</h2>
+      <h2 data-splitting class="headline headline--shiver">chinaz</h2>
+      <h2 data-splitting class="headline headline--fade">fading</h2>
+      <h2 data-splitting class="headline headline--rock">rocking</h2>
+    </main>
+	</body>
+	<script>
+	  Splitting()
+	</script>
+</html>

@@ -1,0 +1,14 @@
+.page {
+    height: 100vh;
+    position: relative;
+//  background: #333;
+    .target {
+        background: yellowgreen;
+        color: #fff;
+        transform-origin: top left;
+        transition: transform 0.5s linear;
+    }
+    .target.move {
+        transform: rotate(-20deg);
+    }
+}

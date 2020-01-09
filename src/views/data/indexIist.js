@@ -7,7 +7,10 @@ const List = [
   { name: '九宫格抽奖', path: 'Lottery' },
   { name: '渐变进度圆环', path: 'Circle' },
   { name: '布局-css控制元素子根据父宽', path: 'Layout_demo1' },
-  { name: '布局-页面折角', path: 'Layout_demo2' }
+  { name: '布局-页面折角', path: 'Layout_demo2' },
+  { name: 'css-闪光效果', path: 'CssShine' },
+  { name: 'css-scroll-snap', path: 'CssScrollSnap' },
+  { name: '字体特效', path: 'SplittingJs' }
 ]
 
 export default List
