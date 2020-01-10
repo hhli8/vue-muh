@@ -10,7 +10,8 @@ const List = [
   { name: '布局-页面折角', path: 'Layout_demo2' },
   { name: 'css-闪光效果', path: 'CssShine' },
   { name: 'css-scroll-snap', path: 'CssScrollSnap' },
-  { name: '字体特效', path: 'SplittingJs' }
+  // { name: '字体特效', path: 'SplittingJs' }
+  { name: 'Progress', path: 'Progress' }
 ]
 
 export default List

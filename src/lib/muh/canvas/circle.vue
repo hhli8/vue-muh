@@ -73,8 +73,8 @@ export default {
   },
   beforeDestroy () {
     // clearInterval(this.inter)
-    cancelAnimationFrame(this.inter)
-    this.inter = null
+    /* cancelAnimationFrame(this.inter)
+    this.inter = null */
   },
   methods: {
     init () {

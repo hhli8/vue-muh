@@ -17,7 +17,6 @@
   "dependencies": {
     "highlight.js": "^9.17.1",
     "raw-loader": "^4.0.0",
-    "splitting": "^1.0.6",
     "vue": "^2.5.11",
     "vue-router": "^3.0.7"
   },

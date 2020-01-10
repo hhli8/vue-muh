@@ -1,0 +1,29 @@
+.page {
+    padding: 30px;
+}
+progress[value] {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 600px;
+    display: block;
+}
+progress[value]::-webkit-progress-bar {
+    border-radius: 10px;
+    background: #e6eeff;
+}
+progress[value]::-webkit-progress-value {
+    border-radius: inherit;
+    background: linear-gradient(90deg, #8aaaff, #fa8cff);
+}
+output {
+    color: #8aaaff;
+    margin-bottom: 40px;
+    display: inline-block;
+    font-size: 30px;
+}
+output:not(:empty) {
+//padding-bottom: 1em;
+}
+output:not(:empty):after {
+    content: '%';
+}

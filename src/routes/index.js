@@ -64,10 +64,15 @@ export default new Router({
       name: 'CssScrollSnap',
       component: resolve => { require(['@/views/muh/css/snap'], resolve) }
     },
+//  {
+//    path: '/splittingjs',
+//    name: 'SplittingJs',
+//    component: resolve => { require(['@/views/muh/splitting'], resolve) }
+//  },
     {
-      path: '/splittingjs',
-      name: 'SplittingJs',
-      component: resolve => { require(['@/views/muh/splitting'], resolve) }
+      path: '/progress',
+      name: 'Progress',
+      component: resolve => { require(['@/views/muh/progress'], resolve) }
     },
     {
       path: '/test',
