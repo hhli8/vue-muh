@@ -27,3 +27,27 @@ output:not(:empty) {
 output:not(:empty):after {
     content: '%';
 }
+
+//.muh-progress {
+//  position: relative;
+//  height: 24px;
+//  background: #ebedf0;
+//  border-radius: 18px;
+//  &__portion {
+//      position: absolute;
+//      left: 0;
+//      height: 100%;
+//      background: #1989fa;
+//      border-radius: inherit;
+//      width: 30%;
+//  }
+//  .output {
+//      position: absolute;
+//      top: -30px;
+//  }
+//}
+.output {
+    position: absolute;
+    bottom: 24px;
+    font-size: 42px;
+}

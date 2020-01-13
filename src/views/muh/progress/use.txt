@@ -1,0 +1,25 @@
+<pre><code><muhProgress v-model="percent"></muhProgress>
+or
+<muh-progress v-model="percent" :isMoving="true" :K="k">
+//<span class="output">{{percent}}%</span>
+// slot 当!isNative时有效
+</muh-progress>
+
+v-model:
+  百分值
+isMoving:
+  是否动态进度
+K:
+  指数，值越大进度越慢，需isMoving=true
+isNative:
+  是否采用h5进度条，兼容性需考虑
+  
+例子：
+  <muh-progress v-model="percent" :isMoving="true" :K="k">
+    <span class="output">{{percent}}%</span>
+  </muh-progress>
+
+import { MProgress } from 'vue-muh'
+Vue.use(MProgress)
+   
+</code></pre>

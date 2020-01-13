@@ -5,6 +5,7 @@ import MPopup from './popup'
 import MBubble from './bubble'
 import MLottery from './lottery'
 import MCircle from './canvas/circle'
+import MProgress from './progress'
 
 let components = [
   Demo,
@@ -13,7 +14,8 @@ let components = [
   MPopup,
   MBubble,
   MLottery,
-  MCircle
+  MCircle,
+  MProgress
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -27,5 +29,6 @@ export {
   MPopup,
   MBubble,
   MLottery,
-  MCircle
+  MCircle,
+  MProgress
 }
