@@ -1,0 +1,32 @@
+<pre><code>
+<muhLoading :option="option"></muhLoading>
+
+<muh-loading :option="option"></muh-loading>
+
+例：
+<muh-loading :option="option1"></muh-loading>
+  option1: { type: 'traverse', color: '#FF3D27' }，svg，传入颜色
+
+<muh-loading :option="option2"></muh-loading>
+  option2: { type: 'ring', base64: '' }，传入base64图片
+  
+<muh-loading :option="option3">
+  // <img src="./loading-dot.png" alt=""/>
+  // slot-插入图片
+</muh-loading>
+  option3: {type: 'loop' }，插槽写入图片
+  
+<muh-loading :option="option4">
+  // <img src="./loading-dot.png" alt=""/>
+  // slot-插入图片
+</muh-loading>
+  option4: {type: 'loopstep' }，插槽写入图片
+  
+<muh-loading :option="option5"></muh-loading>
+  option5: { type: 'semic', color: '' }，svg，传入颜色
+
+以上样式可自定义覆盖
+import { MLoading } from 'vue-muh'
+Vue.use(MLoading)
+   
+</code></pre>

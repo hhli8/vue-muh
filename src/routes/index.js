@@ -75,6 +75,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/progress'], resolve) }
     },
     {
+      path: '/loading',
+      name: 'Loading',
+      component: resolve => { require(['@/views/muh/loading'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }
