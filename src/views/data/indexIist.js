@@ -12,7 +12,8 @@ const List = [
   { name: 'css-scroll-snap', path: 'CssScrollSnap' },
   // { name: '字体特效', path: 'SplittingJs' }
   { name: 'Progress', path: 'Progress' },
-  { name: 'Loading加载效果', path: 'Loading' }
+  { name: 'Loading加载效果', path: 'Loading' },
+  { name: 'Router', path: 'Router' }
 ]
 
 export default List

@@ -1,0 +1,67 @@
+<pre><code>
+
+需求：当前页浏览器返回阻止添加弹窗，确定则返回，取消则不返回
+页面：
+<div v-show="showAlert" style="background: yellowgreen;">
+  <p> 确定要放弃？！</p>
+  <div>
+    <button @click="confirmBack">确定</button><button @click="cancelBack">取消</button>
+  </div>
+</div>
+
+data () {
+  return {
+    showAlert: false
+  }
+},
+created () {
+  window.history.pushState({}, null, location.href) // 添加历史栈
+  window.addEventListener('popstate', this.popstate)
+},
+methods: {
+  popstate () {
+    this.showAlert = true
+    setTimeout(() => {
+      window.removeEventListener('popstate', this.popstate) // 清除操作
+    }, 0)
+  },
+  confirmBack () {
+    history.back()
+  },
+  cancelBack () { // 初始化
+    this.showAlert = false
+    window.history.pushState({}, null, location.href)
+    window.addEventListener('popstate', this.popstate)
+  }
+}
+
+注意：该情况下去下一页必须用replace替换多余的历史栈
+
+
+需求：雷同天猫下单流程，详情页=》创建订单页，弹出支付弹窗(触发条件)=》订单列表
+页面：
+  详情页：......
+  创建订单页：
+  <button @click="chufa">触发条件</button>
+  
+  data () {
+    return {
+      tag: false
+    }
+  },
+  methods: {
+    chufa () {
+      this.tag = true
+      window.history.pushState({}, null, location.href)
+      window.addEventListener('popstate', this.popstate)
+    },
+    popstate () {
+      this.$router.replace({
+        name: 'RouterTestOrderlist'
+      })
+      setTimeout(() => {
+        window.removeEventListener('popstate', this.popstate)
+      }, 0)
+    }
+  }
+</code></pre>

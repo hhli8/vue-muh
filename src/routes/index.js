@@ -80,6 +80,26 @@ export default new Router({
       component: resolve => { require(['@/views/muh/loading'], resolve) }
     },
     {
+      path: '/router',
+      name: 'Router',
+      component: resolve => { require(['@/views/muh/router'], resolve) }
+    },
+    {
+      path: '/router_test_createorder',
+      name: 'RouterTestCreateorder',
+      component: resolve => { require(['@/views/muh/router/createOrder.vue'], resolve) }
+    },
+    {
+      path: '/router_test_orderlist',
+      name: 'RouterTestOrderlist',
+      component: resolve => { require(['@/views/muh/router/orderList.vue'], resolve) }
+    },
+//  {
+//    path: '/hash',
+//    name: 'Hash',
+//    component: resolve => { require(['@/views/muh/router/hash'], resolve) }
+//  },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }

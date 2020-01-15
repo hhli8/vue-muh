@@ -74,6 +74,19 @@ export default {
     clone (value) {
       // console.log(value)
       return JSON.parse(JSON.stringify(value))
+      /* function clone (value) {
+        if (Array.isArray(value)) {
+          return value.map(clone)
+        } else if (value && typeof value === 'object') {
+          var res = {};
+          for (var key in value) {
+            res[key] = clone(value[key]);
+          }
+          return res
+        } else {
+          return value
+        }
+      } */
     }
   }
 }
