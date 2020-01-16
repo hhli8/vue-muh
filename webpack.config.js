@@ -117,6 +117,10 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.(mp4|mpeg)$/,
+        loader: 'file-loader'
       }
     ]
   },

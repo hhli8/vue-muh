@@ -94,11 +94,11 @@ export default new Router({
       name: 'RouterTestOrderlist',
       component: resolve => { require(['@/views/muh/router/orderList.vue'], resolve) }
     },
-//  {
-//    path: '/hash',
-//    name: 'Hash',
-//    component: resolve => { require(['@/views/muh/router/hash'], resolve) }
-//  },
+    {
+      path: '/video',
+      name: 'Video',
+      component: resolve => { require(['@/views/muh/video'], resolve) }
+    },
     {
       path: '/test',
       name: 'kkk',

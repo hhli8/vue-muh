@@ -13,7 +13,8 @@ const List = [
   // { name: '字体特效', path: 'SplittingJs' }
   { name: 'Progress', path: 'Progress' },
   { name: 'Loading加载效果', path: 'Loading' },
-  { name: 'Router', path: 'Router' }
+  { name: 'Router', path: 'Router' },
+  { name: 'Video', path: 'Video' }
 ]
 
 export default List
