@@ -1,5 +1,33 @@
+<pre><code>
 
+<muh-video :option="option"></muh-video>
+
+http://h5player.bytedance.com/
+
+option:
+  src 视频资源
+  poster
+  heightFixed 高固定true，必须有高参数
+  widthFixed 宽固定100% true
+  cover 视频覆盖true，必须有高宽
+  width
+  height
+
+example
+  {
+    src: 'http://h5player.bytedance.com/video/mp4/xgplayer-demo-720p.mp4',
+    poster: 'https://sf1-xgcdn-tos.pstatp.com/img/tos-cn-i-0004/4d7ee0ad8ee24137a766f701f302c796~tplv-noop.jpg',
+    cover: true,
+    height: '10.333333rem',
+    width: '100%'
+  }
+  
+import { MVideo } from 'vue-muh'
+Vue.use(MVideo)
+
+</code></pre>
 
 
 controls: 控件
-poster: 背景图片，时显时不显和浏览器相关，谷歌发生，360好的，不可控，顾西瓜视频用的是背景图片替换
+poster: 背景图片，时显时不显和浏览器相关，谷歌发生，360好的，不可控，故西瓜视频用的是背景图片替换
+duration: bug太多兼容性问题太多，选择西瓜插件

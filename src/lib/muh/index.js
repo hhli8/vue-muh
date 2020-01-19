@@ -7,6 +7,7 @@ import MLottery from './lottery'
 import MCircle from './canvas/circle'
 import MProgress from './progress'
 import MLoading from './loading'
+import MVideo from './video'
 
 let components = [
   Demo,
@@ -17,7 +18,8 @@ let components = [
   MLottery,
   MCircle,
   MProgress,
-  MLoading
+  MLoading,
+  MVideo
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -33,5 +35,6 @@ export {
   MLottery,
   MCircle,
   MProgress,
-  MLoading
+  MLoading,
+  MVideo
 }
