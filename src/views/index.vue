@@ -4,6 +4,7 @@
     <div class="list" v-for="(item, index) in list" :key="index">
       <router-link :to="{ name: item.path }">{{item.name}}</router-link>
     </div>
+    <p style="text-align: center;font-size: 16px;padding: 10px;">需引入mixins</p>
   </div>
 </template>
 

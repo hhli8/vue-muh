@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="muh-popup-page">
     <transition name="overlay">
       <div class="overlay" :class="uishow?'act':''" v-show="elshow" @click="overlayClick"></div>
     </transition>
@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style scoped="scoped" lang="scss" src="./index.scss"></style>
+<style lang="scss" src="./index.scss"></style>
 <style>
 body.muh-overflow-hidden {
   overflow: hidden !important;
