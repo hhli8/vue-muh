@@ -1,5 +1,5 @@
 <template>
-  <div class="muh-sku">
+  <div class="muh-sku" style="height:100%;overflow: hidden;display: flex;flex-direction: column;">
     <div class="muh-sku-good">
       <div class="good-img"><img :src="good_img" alt="" /></div>
       <div class="good-info">
@@ -9,13 +9,20 @@
       </div>
     </div>
     <!--<div class="muh-sku-title">{{skuChoseText}}</div>-->
-    <div class="muh-sku-list" v-for="(item, index) in skulist" :key="index">
-      <div class="name">{{item[fname]}}</div>
-      <div class="sitem-box">
-        <div v-for="(sitem, sindex) in item[fchildren]" class="sitem" :class="[sitem.nopitch?'disable':'', sitem.match?'chosed':'']" :key="sindex" @click="select($event, item, index, sitem, sindex)">
-          {{sitem[sname]}}
+    <div style="flex: 1;overflow: scroll;">
+      <div class="muh-sku-list" v-for="(item, index) in skulist" :key="index">
+        <div class="name">{{item[fname]}}</div>
+        <div class="sitem-box">
+          <div v-for="(sitem, sindex) in item[fchildren]" class="sitem" :class="[sitem.nopitch?'disable':'', sitem.match?'chosed':'']" :key="sindex" @click="select($event, item, index, sitem, sindex)">
+            {{sitem[sname]}}
+          </div>
         </div>
       </div>
+      <!--<div>
+        <span>购买数量:</span>
+        <div><span></span><span></span><span></span></div>
+        
+      </div>-->
     </div>
   </div>
 </template>

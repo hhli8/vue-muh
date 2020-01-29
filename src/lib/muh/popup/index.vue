@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./index.scss"></style>
+<style scoped="scoped" lang="scss" src="./index.scss"></style>
 <style>
 body.muh-overflow-hidden {
   overflow: hidden !important;

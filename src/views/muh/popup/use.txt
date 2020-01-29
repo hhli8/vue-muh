@@ -9,5 +9,7 @@ show:
 
 import { MPopup } from 'vue-muh'
 Vue.use(MPopup)
+
+注意：弹窗高度是计算的，故得先设定不得异步
    
 </code></pre>
