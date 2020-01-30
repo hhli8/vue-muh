@@ -54,6 +54,25 @@
         .icon-add:before {
             content: "\e632";
         }
+        .count-box {
+            .count-computed {
+                display: flex;
+                span {
+                    background: #f6f6f6;
+                    color: #333;
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                }
+                .iconfont {
+                    width: 50px;
+                }
+                .count-value {
+                    width: 70px;
+                    margin: 0 12px;
+                }
+            }
+        }
     }
 //  &-title {
 //      color: #333;

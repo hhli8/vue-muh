@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div style="display: flex;justify-content: space-between;">
+      <div class="count-box" style="display: flex;justify-content: space-between;">
         <span class="count-name">购买数量</span>
         <!--<span class="iconfont icon-minus"></span>
         <span class="iconfont">&#xe620;</span>
