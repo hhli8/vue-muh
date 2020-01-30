@@ -1,11 +1,12 @@
 <template>
   <div>
     <p>this is msku</p>
-    <div style="height: 400px;">
+    <div style="height: 300px;">
       <muh-sku
         ref="muhsku"
         :goodlist="goods"
         :skulist="skus"
+        :maxcount="maxcount"
         :option="skuOption">
       </muh-sku>
     </div>
@@ -26,7 +27,8 @@ export default {
       goods: [], // 商品列表
       skus: [], // sku列表
       skuOption: {}, // 其他配置
-      code: ''
+      code: '',
+      maxcount: 5
     }
   },
   methods: {

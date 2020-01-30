@@ -9,7 +9,7 @@
       </div>
     </div>
     <!--<div class="muh-sku-title">{{skuChoseText}}</div>-->
-    <div style="flex: 1;overflow: scroll;">
+    <div class="scroll-box" style="flex: 1;overflow: scroll;">
       <div class="muh-sku-list" v-for="(item, index) in skulist" :key="index">
         <div class="name">{{item[fname]}}</div>
         <div class="sitem-box">
@@ -18,11 +18,15 @@
           </div>
         </div>
       </div>
-      <!--<div>
-        <span>购买数量:</span>
-        <div><span></span><span></span><span></span></div>
-        
-      </div>-->
+      <div style="display: flex;justify-content: space-between;">
+        <span class="count-name">购买数量</span>
+        <!--<span class="iconfont icon-minus"></span>
+        <span class="iconfont">&#xe620;</span>
+        <span class="iconfont icon-add"></span>-->
+        <div class="count-computed">
+          <span class="iconfont icon-minus" @click="minus"></span><span class="count-value">{{count}}</span><span class="iconfont icon-add" @click="add"></span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +52,10 @@ export default {
       default: () => {
         return {}
       }
+    },
+    maxcount: {
+      type: Number,
+      default: 99
     }
   },
   computed: {
@@ -77,7 +85,8 @@ export default {
     	good_price: '', // 价格
     	skuChoseText: '', // 显示已选或未选的参数
     	seleceProps: [], // 选中的sku-item集合
-    	targetGood: ''
+    	targetGood: '',
+    	count: 1
   	}
   },
   watch: {
@@ -267,8 +276,19 @@ export default {
     confirm (fun) {
       fun({
         skuArr: this.seleceProps,
-        good: this.targetGood
+        good: this.targetGood,
+        count: this.count
       })
+    },
+    minus () {
+      if (this.count > 1) this.count--
+    },
+    add () {
+      if (this.count >= this.maxcount) {
+        return
+      } else {
+        this.count++
+      }
     },
   	demo () {
   	  //
