@@ -8,6 +8,7 @@ import MCircle from './canvas/circle'
 import MProgress from './progress'
 import MLoading from './loading'
 import MVideo from './video'
+import MDialog from './dialog'
 
 let components = [
   Demo,
@@ -19,7 +20,8 @@ let components = [
   MCircle,
   MProgress,
   MLoading,
-  MVideo
+  MVideo,
+  MDialog
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -36,5 +38,6 @@ export {
   MCircle,
   MProgress,
   MLoading,
-  MVideo
+  MVideo,
+  MDialog
 }

@@ -3,6 +3,7 @@
   ref="muhsku"
   :goodlist="goods"
   :skulist="skus"
+  :maxcount="maxcount"
   :option="skuOption">
 </muhSku>
 or
@@ -26,6 +27,7 @@ skulist——sku列表
   values/自定义——必
     vname/自定义——必
     vid/自定义——必，不可重复(同级或者非同级)
+maxcount——最大数量，默认99
 option——配置
   gimg——商品图片，必
   gprice——商品价格，必

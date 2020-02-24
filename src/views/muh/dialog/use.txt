@@ -1,0 +1,32 @@
+<pre><code>
+<muhDialog></muhDialog>
+
+<muh-dialog :type="'init'" v-model="initshow">
+  <div style="width:200px;padding: 30px;">9999</div>
+</muh-dialog>
+<muh-dialog :type="'normal'" v-model="normalshow" show-cancel-button
+  :data='dialogData'>
+</muh-dialog>
+
+type: String
+  init: 内容插槽自定义
+  normal: 带取消/确定按钮
+    show-cancel-button: 控制操作按钮显示
+    data: 内容
+      title: String
+      content: String
+      confirm: Function
+      
+例子：this.dialogData = {
+  title: '提示',
+  content: '确定放弃此次操作吗？',
+  confirm: (val) => {
+    console.log(val)
+    this.normalshow = false
+  }
+}
+
+import { MDialog } from 'vue-muh'
+Vue.use(MDialog)
+   
+</code></pre>

@@ -100,6 +100,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/video'], resolve) }
     },
     {
+      path: '/dialog',
+      name: 'Dialog',
+      component: resolve => { require(['@/views/muh/dialog'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }
