@@ -15,7 +15,8 @@ const List = [
   { name: 'Loading加载效果', path: 'Loading' },
   { name: 'Router', path: 'Router' },
   { name: 'Video', path: 'Video' },
-  { name: 'Dialog', path: 'Dialog' }
+  { name: 'Dialog', path: 'Dialog' },
+  { name: 'Picker', path: 'Picker' }
 ]
 
 export default List

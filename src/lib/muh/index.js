@@ -9,6 +9,7 @@ import MProgress from './progress'
 import MLoading from './loading'
 import MVideo from './video'
 import MDialog from './dialog'
+import MPicker from './picker'
 
 let components = [
   Demo,
@@ -21,7 +22,8 @@ let components = [
   MProgress,
   MLoading,
   MVideo,
-  MDialog
+  MDialog,
+  MPicker
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -39,5 +41,6 @@ export {
   MProgress,
   MLoading,
   MVideo,
-  MDialog
+  MDialog,
+  MPicker
 }

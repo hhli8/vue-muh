@@ -5,7 +5,7 @@ import router from './routes'
 import mixinBase from '@/mixins/base'
 // .use(LayTpfix)
 // .use(LayFlscreen)
-import { Demo, MCascader, MSku, MPopup, MBubble, MLottery, MCircle, MProgress, MLoading, MVideo, MDialog } from './lib/muh'
+import { Demo, MCascader, MSku, MPopup, MBubble, MLottery, MCircle, MProgress, MLoading, MVideo, MDialog, MPicker } from './lib/muh'
 Vue.use(Demo)
    .use(MCascader)
    .use(MSku)
@@ -17,6 +17,7 @@ Vue.use(Demo)
    .use(MLoading)
    .use(MVideo)
    .use(MDialog)
+   .use(MPicker)
    
 Vue.mixin(mixinBase)
 

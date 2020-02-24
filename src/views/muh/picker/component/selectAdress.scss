@@ -1,0 +1,131 @@
+@import '~@/assets/scss/common';
+.select-adr-page {
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+    background: #fff;
+    font-family: Roboto-Regular,Roboto;
+    font-weight: 400;
+    font-size: 28px;
+    .p-title {
+        padding: 28px 0 30px 30px;
+        height: 32px;
+        line-height: 32px;
+        color: #14181F;
+    }
+    .p-value {
+        background: #F7F8FC;
+        padding-left: 30px;
+        height: 100px;
+        font-size: 36px;
+        font-family:Roboto-Medium,Roboto;
+        font-weight:500;
+        color: #14181F;
+        .icon {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: url(~@/assets/imgs/creditPerson/icon-position.png) no-repeat center;
+            background-size: 100% 100%;
+            margin-right: 30px;
+        }
+    }
+    .p-result {
+        padding-left: 30px;
+        .text {
+            padding-top: 60px;
+            margin-bottom: 30px;
+            height: 32px;
+            line-height: 32px;
+        }
+        .select-value {
+            font-size: 32px;
+            font-family:Roboto-Medium,Roboto;
+            font-weight:500;
+            padding-bottom: 40px;
+            height: 38px;
+            line-height: 38px;
+            color: #14181F;
+            white-space: nowrap;
+            overflow: scroll;
+            span {
+                margin-right: 60px;
+            }
+            span:last-child {
+//              margin-right: 0;
+            }
+            .select-value-item.act, .alert {
+//              color: $wisekredit;
+            }
+        }
+        .select-value::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    .listbox {
+        padding: 0 30px;
+        .list-item {
+            height: 32px;
+            line-height: 32px;
+            padding: 40px 0 46px 0;
+            color: #14181F;
+            position: relative;
+        }
+        .list-item:after {
+            content: ' ';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 2px;
+            border-bottom: 2px solid #E7EBEE;
+            transform-origin: 0 0;
+            transform: scaleY(0.5);
+        }
+        .list-item:last-child:after {
+            display: none;
+        }
+        .list-item.act {
+//          color: $wisekredit;
+            span.icon {
+                display: inline-block;
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+//                background: url(~@/assets/imgs/creditPerson/icon-selected.png) no-repeat center;
+//                background-size: 100% 100%;
+            }
+        }
+    }
+}
+//.select-adr-page.creditbean {
+//  .p-result .select-value {
+//      .select-value-item.act, .alert {
+//          color: $creditbean;
+//      }
+//  }
+//  .listbox .list-item.act {
+//      color: $creditbean;
+//      span.icon {
+//          background: url(~@/assets/imgs/creditPerson/icon-selected-creditbean.png) no-repeat center;
+//          background-size: 100% 100%;
+//      }
+//  }
+//}
+//.select-adr-page.creditbus {
+//  .p-result .select-value {
+//      .select-value-item.act, .alert {
+//          color: $creditbus;
+//      }
+//  }
+//  .listbox .list-item.act {
+//      color: $creditbus;
+//      span.icon {
+//          background: url(~@/assets/imgs/creditPerson/icon-selected-creditbus.png) no-repeat center;
+//          background-size: 100% 100%;
+//      }
+//  }
+//}

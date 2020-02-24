@@ -105,6 +105,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/dialog'], resolve) }
     },
     {
+      path: '/picker',
+      name: 'Picker',
+      component: resolve => { require(['@/views/muh/picker'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }
