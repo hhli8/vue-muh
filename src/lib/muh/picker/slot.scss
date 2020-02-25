@@ -1,0 +1,16 @@
+.picker-slot-wrapper {
+    flex: 1;
+    transition-timing-function: ease-out;
+    backface-visibility: hidden;
+    .picker-item {
+        height: 80px;
+        line-height: 80px;
+        box-sizing: border-box;
+        color: #8C9FAD;
+        font-size: 28px;
+    }
+    .picker-item.act {
+        font-size: 36px;
+        color: #2C72F5;
+    }
+}
