@@ -10,11 +10,12 @@
     <muh-popup v-model="dataPicker">
       <muh-picker type="date"></muh-picker>
     </muh-popup>
-    <muh-popup v-model="singlePicker">
+    <muh-popup v-model="singlePicker" :async="true">
+      <!--<div>asdasdasdasd<br />asdasdasdasd<br />asdasdasdasd<br /></div>-->
       <muh-picker
         :columns="columns"
         :set-key="columnsOption"
-        :visibleItemCount='3'>
+        :visibleItemCount='4'>
       </muh-picker>
     </muh-popup>
   </div>
@@ -28,9 +29,9 @@ export default {
       singlePicker: false,
       columns: [],
       columnsOption: {
-        value: 'name',
-        code: 'code',
-        defaultIndex: 2
+        value: 'name', // 默认value
+        code: 'code', // 默认code
+        defaultIndex: '' // 默认0
       }
     }
   },

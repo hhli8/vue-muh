@@ -1,11 +1,12 @@
 <template>
   <div>
-    <button @click="click">dianwo</button>
+    <!--<button @click="click">dianwo</button>-->
     <div class="muh-picker" :style='"height: "+boxHeight+"px;"'>
       <!--<picker-slot ref="slot" v-for="(item,index) in columns" :list="item.values" :type="item.type" :defaultSelected="item.defaultIndex" :visibleCount="visibleItemCount" @getHeight="setHeight" @getSelect="setSelect" :key="index"></picker-slot>-->
-      <picker-slot ref="slot" v-for="(item,index) in type?columns:[{values: columns, defaultIndex: index}]" :key="index" :list="item.values"
+      <picker-slot ref="slot" v-for="(item,index) in type?columns:[{values: columns, defaultIndex: index, type: 'single'}]" :key="index" :list="item.values"
         :defaultSelected="item.defaultIndex"
         :visibleCount="visibleItemCount"
+        :type="item.type"
         @getSelect="setSelect"
         @getHeight="setHeight">
       </picker-slot>
@@ -43,7 +44,7 @@ export default {
     visibleItemCount: {
       type: Number,
       default: 5
-    },
+    }
   },
   computed: {
     value () {
@@ -64,7 +65,7 @@ export default {
       this.boxHeight = val
     },
     setSelect (val) {
-      //
+      console.log(val)
     }
   }
 }

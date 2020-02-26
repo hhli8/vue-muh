@@ -20,6 +20,10 @@ export default {
     position: {
       type: String,
       default: 'bottom'
+    },
+    async: {
+      type: Boolean,
+      default: false
     }
   },
   model: {
@@ -46,7 +50,13 @@ export default {
     //
   },
   mounted () {
-    this.bottom = -this.$refs.muhPopup.clientHeight
+    if (this.async) {
+      setTimeout(() => {
+        this.bottom = -this.$refs.muhPopup.clientHeight
+      }, 100)
+    } else {
+      this.bottom = -this.$refs.muhPopup.clientHeight
+    }
   },
   methods: {
     open () {
