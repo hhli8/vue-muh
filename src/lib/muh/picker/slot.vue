@@ -2,7 +2,6 @@
   <div class="picker-slot-wrapper" ref="wrapper" :style='"transition-duration: "+transition+"s;"'>
     <div class="picker-item" v-for="(item, index) in list" :class="{act: defaultIndex===index}" :key="index" @click="itemClick(item, index)">{{item.name}}</div>
   </div>
-  <!--<button @click="click">dian</button>-->
 </template>
 
 <script>
@@ -23,7 +22,11 @@ export default {
       type: Number,
       default: 0
     },
-    originDefault: { // 滚动的位置-滚动的个数
+    /* originDefault: { // 滚动的位置-滚动的个数
+      type: Number,
+      default: 1
+    }, */
+    actLine: {
       type: Number,
       default: 1
     },
@@ -38,7 +41,9 @@ export default {
       defaultIndex: 1, // 默认选择中的项
       itemHeight: 0, // 单个的高度
       maxbottom: 0,
-      actLine: 1 // 哪一行设为act行, 0开始
+      // actLine: 2 // 哪一行设为act行, 1开始
+      // actLine: 2 // 得大于等于一半？
+      // 规则：偶数行时，一般中上行，奇数行时，居中显示
     }
   },
   watch: {
@@ -50,11 +55,13 @@ export default {
     //
   },
   methods: {
-    click () {
-      console.log(this.list)
-    },
     init () {
       this.defaultIndex = this.defaultSelected
+      this.$emit('getSelect', {
+        type: this.type,
+        index: this.defaultIndex,
+        val: this.list[this.defaultIndex]
+      })
       let el = this.$refs.wrapper
       this.$nextTick(() => {
         let pitems = el.querySelectorAll('.picker-item')
@@ -63,11 +70,14 @@ export default {
         this.$emit('getHeight', this.itemHeight * this.visibleCount)
         let isDragging = false
         let dragState = {}
-        let mintop = this.originDefault * this.itemHeight
-        let maxbottom = (pitems.length - this.visibleCount + 2) * this.itemHeight
+        // let mintop = this.originDefault * this.itemHeight
+        let mintop = (this.actLine - 1) * this.itemHeight
+        // let maxbottom = (pitems.length - this.visibleCount + 2) * this.itemHeight
+        let maxbottom = (pitems.length - this.actLine) * this.itemHeight
         this.maxbottom = maxbottom
         let velocityTranslate, prevTranslate
-        translateUtil.translateElement(el, null, -this.itemHeight * (this.defaultIndex - 1)) // 初始化滚动到最上面
+        // translateUtil.translateElement(el, null, -this.itemHeight * (this.defaultIndex - 1)) // 初始化滚动到最上面
+        translateUtil.translateElement(el, null, -this.itemHeight * (this.defaultIndex + 1 - this.actLine)) // 初始化滚动到最上面
         let options = {
           start: (e) => {
             dragState = {
@@ -114,7 +124,8 @@ export default {
               if (translate >= mintop) translate = mintop // 0 => mintop
               if (translate <= -this.maxbottom) translate = -this.maxbottom // bottom => maxbottom
               // console.log(translate / itemHeight)
-              this.defaultIndex = translate === mintop ? 0 : this.getSelected(Math.abs(translate / this.itemHeight))
+              // this.defaultIndex = translate === mintop ? 0 : this.getSelected((translate / this.itemHeight))
+              this.defaultIndex = this.actLine - 1 - (translate / this.itemHeight) // this.getSelected(translate / this.itemHeight)
               this.$emit('getSelect', {
                 type: this.type,
                 index: this.defaultIndex,
@@ -150,9 +161,13 @@ export default {
         //
       })
     },
-    getSelected (value) {
-      let defaultIndex = 1
-      return value + defaultIndex
+    getSelected (value) { // 推理-可删
+      return this.actLine - 1 - value
+      /* if (value < 0) {
+        return Math.abs(value) + (this.actLine - 1)
+      } else {
+        return this.actLine - 1 - value
+      } */
     },
     itemClick () {
       //

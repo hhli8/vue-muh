@@ -8,34 +8,52 @@
       <button>省市区</button>
     </div>
     <muh-popup v-model="dataPicker">
-      <muh-picker type="date"></muh-picker>
-    </muh-popup>
-    <muh-popup v-model="singlePicker" :async="true">
-      <!--<div>asdasdasdasd<br />asdasdasdasd<br />asdasdasdasd<br /></div>-->
       <muh-picker
-        :columns="columns"
-        :set-key="columnsOption"
-        :visibleItemCount='4'>
+        ref="datePickerRef"
+        :set-key="columnsOptionDate"
+        :min-year="1970"
+        :initValue="initValue"
+        lang="zh"
+        type="date">
       </muh-picker>
     </muh-popup>
+    <muh-popup v-model="singlePicker" :async="true">
+      <div style="background: #BD2C00;color: #fff;text-align: center;font-size: 24px;">
+        <span>标题</span>
+      </div>
+      <muh-picker
+        ref="singlePickerRef"
+        :columns="columns"
+        :set-key="columnsOption"
+        :actLine='2'
+        :visibleItemCount='5'>
+      </muh-picker>
+      <button @click="singleOk">确定</button>
+    </muh-popup>
+    <div v-highlight v-html='htmlEncode(code)'></div>
   </div>
 </template>
 
 <script>
+import usecode from './use.txt'
 export default {
   data () {
     return {
+      code: '',
       dataPicker: false,
       singlePicker: false,
       columns: [],
       columnsOption: {
         value: 'name', // 默认value
         code: 'code', // 默认code
-        defaultIndex: '' // 默认0
-      }
+        defaultIndex: 2 // 默认0
+      },
+      columnsOptionDate: {},
+      initValue: []
     }
   },
   created () {
+    this.code = usecode
     setTimeout(() => {
       this.columns = [
         { name: '杭州', code: '1001' },
@@ -46,6 +64,7 @@ export default {
         { name: '温州', code: '1006' },
         { name: '舟山', code: '1007' }
       ]
+      this.initValue= [1991, 3, 10]
     }, 30)
   },
   methods: {
@@ -54,6 +73,9 @@ export default {
     },
     show3 () {
       this.singlePicker = true
+    },
+    singleOk () {
+      console.log(this.$refs.singlePickerRef.getResult())
     }
   }
 }

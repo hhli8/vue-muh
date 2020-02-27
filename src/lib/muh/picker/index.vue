@@ -1,12 +1,11 @@
 <template>
   <div>
-    <!--<button @click="click">dianwo</button>-->
     <div class="muh-picker" :style='"height: "+boxHeight+"px;"'>
-      <!--<picker-slot ref="slot" v-for="(item,index) in columns" :list="item.values" :type="item.type" :defaultSelected="item.defaultIndex" :visibleCount="visibleItemCount" @getHeight="setHeight" @getSelect="setSelect" :key="index"></picker-slot>-->
-      <picker-slot ref="slot" v-for="(item,index) in type?columns:[{values: columns, defaultIndex: index, type: 'single'}]" :key="index" :list="item.values"
+      <picker-slot ref="slot" v-for="(item,index) in type?(type==='date'?dateColumns:columns):[{values: columns, defaultIndex: index, type: 'single'}]" :key="index" :list="item.values"
         :defaultSelected="item.defaultIndex"
         :visibleCount="visibleItemCount"
         :type="item.type"
+        :actLine='actLine'
         @getSelect="setSelect"
         @getHeight="setHeight">
       </picker-slot>
@@ -23,15 +22,16 @@ export default {
   },
   data () {
     return {
-      boxHeight: ''
+      boxHeight: '',
+      result: '',
+      hasInit: false,
+      dateColumns: []
     }
   },
   props: {
     type: {
       type: String,
-      default: () => {
-        return ''
-      }
+      default: ''
     },
     columns: {
       type: Array,
@@ -44,6 +44,24 @@ export default {
     visibleItemCount: {
       type: Number,
       default: 5
+    },
+    actLine: {
+      type: Number,
+      default: 2
+    },
+    minYear: {
+      type: Number,
+      default: 1960
+    },
+    lang: {
+      type: String,
+      default: 'en' // en-  zh-
+    },
+    initValue: {
+      type: Array,
+      default: () => {
+        return []
+      }
     }
   },
   computed: {
@@ -57,15 +75,73 @@ export default {
       return this.setKey.defaultIndex || 0
     }
   },
+  created () {
+    if (this.type === 'date') {
+      this.dateFormate(this.minYear)
+    }
+  },
+  watch: {
+    initValue (val) {
+      this.hasInit = this.initValue.length > 0
+      if (val.length) {
+        if (this.type === 'date') {
+          // 处理时间picker初始化
+          console.log(this.hasInit)
+        }
+      }
+    }
+  },
   methods: {
-    click () {
-      console.log(this.value, this.code, this.columns, this.visibleItemCount)
+    dateFormate (minYear) { // dateColumns
+      console.log(this.lang)
+      let hasInit = false
+      let iYear = ''
+      let iMonth = ''
+      let iDay = ''
+      let arrY = this.getYears(minYear)
+      return
+      let years = {
+        values: arrY,
+        defaultIndex: hasInit ? this.computedIndex(arrY, iYear) : arrY.length - 1,
+        type: 'year'
+      }
+      let arrM = hasInit ? this.getMonths(iYear) : this.getMonths(arrY[arrY.length - 1], 'last')
+      let month = {
+        values: arrM,
+        defaultIndex: hasInit ? iMonth - 1 : arrM.length - 1,
+        type: 'month'
+      }
+      let arrD = hasInit ? this.getDay(iYear, iMonth) : this.getDay(arrY[arrY.length - 1], arrM.length, 'last')
+      let day = {
+        values: arrD,
+        defaultIndex: hasInit ? iDay - 1 : arrD.length - 1,
+        type: 'day'
+      }
+      this.dateColumns = [
+        day, month, years
+      ]
     },
     setHeight (val) { // 给盒子设置高度
       this.boxHeight = val
     },
     setSelect (val) {
-      console.log(val)
+      this.result = val
+    },
+    getResult () {
+      if (this.result.type === 'single') {
+        return this.result
+      } else {
+        return {}
+      }
+    },
+    getYears (minYear) {
+      let cur = new Date()
+      let maxYear = cur.getFullYear()
+      let arr = []
+      for (let i = minYear; i < maxYear + 1; i++) {
+        arr.push(i)
+      }
+      return arr
     }
   }
 }

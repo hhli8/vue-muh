@@ -1,0 +1,57 @@
+<pre><code><muhPicker></muhPicker>
+or
+例1：
+<muh-picker
+  ref="singlePickerRef"
+  :columns="columns"
+  :set-key="columnsOption"
+  :actLine='3'
+  :visibleItemCount='5'>
+</muh-picker>
+
+参数：
+  type——picker类型，默认为'single'，'date'——时间picker
+    type: String
+    default: 'single'
+  columns——显示的数据
+    type: Array
+    default: []
+  set-key——显示的键名等设置，有默认激活的项index
+    type: Object
+    default: {
+      value: 'name', // 默认value——键名
+      code: 'code', // 默认code——键名
+      defaultIndex: 0 // 默认激活的项，默认为0
+    }
+  actLine——被设为放置激活项的行，从1开始
+    type: Number
+    default: 2
+  visibleItemCount——可见的行数，最少行数未测试，一般大于3吧
+    type: Number
+    default: 5
+方法：
+  getResult——获取选择的结果
+     例：this.$refs.singlePickerRef.getResult()
+事件：
+
+例1：
+  columns = [
+    { name: '杭州', code: '1001' },
+    { name: '宁波', code: '1002' },
+    { name: '金华', code: '1003' },
+    { name: '衢州', code: '1004' },
+    { name: '丽水', code: '1005' },
+    { name: '温州', code: '1006' },
+    { name: '舟山', code: '1007' }
+  ]
+  columnsOption: {
+    value: 'name', // 默认value
+    code: 'code', // 默认code
+    defaultIndex: 1 // 默认0
+  }
+
+import { MPicker } from 'vue-muh'
+Vue.use(MPicker)
+
+   
+</code></pre>

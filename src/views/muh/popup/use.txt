@@ -1,11 +1,13 @@
 <pre><code><muhPopup v-model="show"></muhPopup>
 or
-<muh-popup v-model="show">
+<muh-popup v-model="show" :async="true">
   // <!--slot---插槽-->
 </muh-popup>
 
 show:
   Boolean
+async:
+  Boolean,默认为false, true时定时器控制异步计算高度
 
 import { MPopup } from 'vue-muh'
 Vue.use(MPopup)
