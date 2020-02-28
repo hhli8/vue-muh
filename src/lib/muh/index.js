@@ -11,6 +11,8 @@ import MVideo from './video'
 import MDialog from './dialog'
 import MPicker from './picker'
 
+import 'default-passive-events'
+
 let components = [
   Demo,
   MCascader,

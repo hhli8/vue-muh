@@ -25,7 +25,17 @@ export default {
       boxHeight: '',
       result: '',
       hasInit: false,
-      dateColumns: []
+      dateColumns: [],
+      /* dateColumns: [
+        { values: [] }, { values: [] }, { values: [] }
+      ], */
+      arrYearIndex: 2, // 默认en
+      arrDayIndex: 0,
+      arrMonthIndex: 1,
+      curYear: '',
+      curDay: '',
+      curMonth: '',
+      isLastYear: true,
     }
   },
   props: {
@@ -85,24 +95,27 @@ export default {
       this.hasInit = this.initValue.length > 0
       if (val.length) {
         if (this.type === 'date') {
-          // 处理时间picker初始化
-          console.log(this.hasInit)
+          this.dateFormate(this.minYear)
         }
       }
     }
   },
   methods: {
-    dateFormate (minYear) { // dateColumns
-      console.log(this.lang)
-      let hasInit = false
+    dateFormate (minYear) {
+      // console.log(this.lang)
+      let hasInit = this.hasInit // false
       let iYear = ''
       let iMonth = ''
       let iDay = ''
+      if (hasInit) {
+        iYear = Number(this.initValue[0])
+        iMonth = Number(this.initValue[1])
+        iDay = Number(this.initValue[2])
+      }
       let arrY = this.getYears(minYear)
-      return
       let years = {
         values: arrY,
-        defaultIndex: hasInit ? this.computedIndex(arrY, iYear) : arrY.length - 1,
+        defaultIndex: hasInit ? arrY.indexOf(iYear) : arrY.length - 1,
         type: 'year'
       }
       let arrM = hasInit ? this.getMonths(iYear) : this.getMonths(arrY[arrY.length - 1], 'last')
@@ -117,19 +130,82 @@ export default {
         defaultIndex: hasInit ? iDay - 1 : arrD.length - 1,
         type: 'day'
       }
-      this.dateColumns = [
-        day, month, years
-      ]
+      if (this.lang === 'en') {
+        this.dateColumns = [day, month, years]
+      } else if (this.lang === 'zh') {
+        this.dateColumns = [years, month, day]
+        this.arrYearIndex = 0
+        this.arrDayIndex = 2
+      } else {
+        this.dateColumns = []
+      }
+      // console.log(this.dateColumns)
     },
     setHeight (val) { // 给盒子设置高度
       this.boxHeight = val
     },
     setSelect (val) {
+      // console.log(val)
       this.result = val
+      if (val.type === 'year') {
+        this.curYear = val.val
+        let lst = this.dateColumns[this.arrYearIndex].values.length - 1
+        let isLast = lst === val.index
+        this.isLastYear = isLast
+        // month
+        let arrM = this.getMonths(val.val, isLast)
+        let month = {
+          values: arrM,
+          defaultIndex: 0,
+          type: 'month'
+        }
+        this.$set(this.dateColumns, this.arrMonthIndex, month)
+        // day
+        let cur = new Date()
+        let curMonth = cur.getMonth() + 1
+        let arrD = this.getDay(val.val, 1, curMonth === 1)
+        let day = {
+          values: arrD,
+          defaultIndex: 0,
+          type: 'day'
+        }
+        this.$set(this.dateColumns, this.arrDayIndex, day)
+        this.curDay = 1
+        this.curMonth = 1
+      } else if (val.type === 'month') {
+        // 当前年isLastYear  且   最后月
+        let arrD = []
+        if (this.isLastYear && this.dateColumns[this.arrMonthIndex].values.length - 1 === val.index) {
+          arrD = this.getDay('', '', true)
+          this.curMonth = ''
+        } else {
+          this.curMonth = val.index + 1
+          arrD = this.getDay(this.curYear, val.index + 1)
+        }
+        let day = {
+          values: arrD,
+          defaultIndex: 0,
+          type: 'day'
+        }
+        this.$set(this.dateColumns, this.arrDayIndex, day)
+        this.curDay = 1
+      } else if (val.type === 'day') {
+        this.curDay = val.index + 1
+      }
     },
     getResult () {
       if (this.result.type === 'single') {
         return this.result
+      } else if (this.type === 'date') {
+        let cur = new Date()
+        let Month = cur.getMonth() + 1
+        let Year = cur.getFullYear()
+        let Day = cur.getDate()
+        return {
+          year: this.curYear || (this.hasInit ? Number(this.initValue[0]) : Year),
+          month: this.curMonth || (this.hasInit ? Number(this.initValue[1]) : Month),
+          day: this.curDay || (this.hasInit ? Number(this.initValue[2]) : Day)
+        }
       } else {
         return {}
       }
@@ -142,6 +218,40 @@ export default {
         arr.push(i)
       }
       return arr
+    },
+    getMonths (year, last) {
+      let arr = this.lang === 'en' ? ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      if (last) {
+        let cur = new Date()
+        let curMonth = cur.getMonth() + 1
+        let returnArr = []
+        for (let i = 1; i < curMonth + 1; i++) {
+          returnArr.push(arr[i - 1])
+        }
+        return returnArr
+      } else {
+        return arr
+      }
+    },
+    getDay (y, m, last) {
+      if (last) {
+        let cur = new Date()
+        let curDay = cur.getDate()
+        let curDayArr = []
+        for (let i = 1; i < curDay + 1; i++) {
+          curDayArr.push(i)
+        }
+        return curDayArr
+      } else {
+        m = parseInt(m, 10)
+        var temp = new Date(y, m, 0)
+        let days = temp.getDate()
+        let arr = []
+        for (var i = 1; i < days + 1; i++) {
+          arr.push(i)
+        }
+        return arr
+      }
     }
   }
 }

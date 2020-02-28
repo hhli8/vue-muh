@@ -15,6 +15,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "default-passive-events": "^1.0.10",
     "highlight.js": "^9.17.1",
     "raw-loader": "^4.0.0",
     "vue": "^2.5.11",

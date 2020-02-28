@@ -3,19 +3,32 @@
     <p style="text-align: center;padding: 20px 0;font-size: 40px;">this is picker</p>
     <div style="padding: 0 20px;">
       <button @click="show1">选择出生年月日(中文版)</button>
-      <button>选择出生年月日(英文版)</button>
+      <button @click="show2">选择出生年月日(英文版)</button>
       <button @click="show3">选择单列</button>
       <button>省市区</button>
     </div>
-    <muh-popup v-model="dataPicker">
+    <muh-popup v-model="dataPicker" :async="true">
       <muh-picker
         ref="datePickerRef"
         :set-key="columnsOptionDate"
         :min-year="1970"
         :initValue="initValue"
+        :actLine='3'
         lang="zh"
         type="date">
       </muh-picker>
+      <button @click="dateOk">确定</button>
+    </muh-popup>
+    <muh-popup v-model="dataPicker2" :async="true">
+      <muh-picker
+        ref="datePickerRef2"
+        :set-key="columnsOptionDate"
+        :min-year="1970"
+        :actLine='2'
+        lang="en"
+        type="date">
+      </muh-picker>
+      <button @click="dateOk2">确定</button>
     </muh-popup>
     <muh-popup v-model="singlePicker" :async="true">
       <div style="background: #BD2C00;color: #fff;text-align: center;font-size: 24px;">
@@ -41,6 +54,7 @@ export default {
     return {
       code: '',
       dataPicker: false,
+      dataPicker2: false,
       singlePicker: false,
       columns: [],
       columnsOption: {
@@ -71,11 +85,22 @@ export default {
     show1 () {
       this.dataPicker = true
     },
+    show2 () {
+      this.dataPicker2 = true
+    },
     show3 () {
       this.singlePicker = true
     },
     singleOk () {
       console.log(this.$refs.singlePickerRef.getResult())
+    },
+    dateOk () {
+      this.dataPicker = false
+      console.log(this.$refs.datePickerRef.getResult())
+    },
+    dateOk2 () {
+      this.dataPicker2 = false
+      console.log(this.$refs.datePickerRef2.getResult())
     }
   }
 }

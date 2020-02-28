@@ -1,6 +1,6 @@
 <template>
   <div class="picker-slot-wrapper" ref="wrapper" :style='"transition-duration: "+transition+"s;"'>
-    <div class="picker-item" v-for="(item, index) in list" :class="{act: defaultIndex===index}" :key="index" @click="itemClick(item, index)">{{item.name}}</div>
+    <div class="picker-item" v-for="(item, index) in list" :class="{act: defaultIndex===index}" :key="index" @click="itemClick(item, index)">{{item.name || item}}</div>
   </div>
 </template>
 
@@ -22,11 +22,7 @@ export default {
       type: Number,
       default: 0
     },
-    /* originDefault: { // 滚动的位置-滚动的个数
-      type: Number,
-      default: 1
-    }, */
-    actLine: {
+    actLine: { // 哪一行设为act行, 1开始
       type: Number,
       default: 1
     },
@@ -40,10 +36,7 @@ export default {
       transition: 0,
       defaultIndex: 1, // 默认选择中的项
       itemHeight: 0, // 单个的高度
-      maxbottom: 0,
-      // actLine: 2 // 哪一行设为act行, 1开始
-      // actLine: 2 // 得大于等于一半？
-      // 规则：偶数行时，一般中上行，奇数行时，居中显示
+      maxbottom: 0
     }
   },
   watch: {
@@ -52,20 +45,23 @@ export default {
     }
   },
   mounted () {
-    //
+    this.init()
   },
   methods: {
     init () {
       this.defaultIndex = this.defaultSelected
-      this.$emit('getSelect', {
-        type: this.type,
-        index: this.defaultIndex,
-        val: this.list[this.defaultIndex]
-      })
+      if (this.type === 'single') {
+        this.$emit('getSelect', {
+          type: this.type,
+          index: this.defaultIndex,
+          val: this.list[this.defaultIndex]
+        })
+      }
       let el = this.$refs.wrapper
       this.$nextTick(() => {
         let pitems = el.querySelectorAll('.picker-item')
         let pitem = pitems[0]
+        if (!pitem) return
         this.itemHeight = pitem.getBoundingClientRect().height
         this.$emit('getHeight', this.itemHeight * this.visibleCount)
         let isDragging = false
