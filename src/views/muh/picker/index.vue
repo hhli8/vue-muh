@@ -5,12 +5,11 @@
       <button @click="show1">选择出生年月日(中文版)</button>
       <button @click="show2">选择出生年月日(英文版)</button>
       <button @click="show3">选择单列</button>
-      <button>省市区</button>
+      <button @click="show4">省市区</button>
     </div>
     <muh-popup v-model="dataPicker" :async="true">
       <muh-picker
         ref="datePickerRef"
-        :set-key="columnsOptionDate"
         :min-year="1970"
         :initValue="initValue"
         :actLine='3'
@@ -22,7 +21,6 @@
     <muh-popup v-model="dataPicker2" :async="true">
       <muh-picker
         ref="datePickerRef2"
-        :set-key="columnsOptionDate"
         :min-year="1970"
         :actLine='2'
         lang="en"
@@ -38,17 +36,31 @@
         ref="singlePickerRef"
         :columns="columns"
         :set-key="columnsOption"
-        :actLine='2'
-        :visibleItemCount='5'>
+        :actLine='4'
+        :visibleItemCount='6'>
       </muh-picker>
       <button @click="singleOk">确定</button>
     </muh-popup>
+    
+    <muh-popup v-model="cityPicker" :async="true">
+      <muh-picker
+        ref="cityPicker"
+        :actLine='3'
+        :set-key="cityoption"
+        :initValue="initCity"
+        :columns="cityColumns"
+        type="adress">
+      </muh-picker>
+      <button @click="cityOk">确定</button>
+    </muh-popup>
+    
     <div v-highlight v-html='htmlEncode(code)'></div>
   </div>
 </template>
 
 <script>
 import usecode from './use.txt'
+import City from './city.js'
 export default {
   data () {
     return {
@@ -56,14 +68,21 @@ export default {
       dataPicker: false,
       dataPicker2: false,
       singlePicker: false,
+      cityPicker: false,
       columns: [],
       columnsOption: {
         value: 'name', // 默认value
         code: 'code', // 默认code
         defaultIndex: 2 // 默认0
       },
-      columnsOptionDate: {},
-      initValue: []
+      initValue: [],
+      cityColumns: [],
+      cityoption: {
+        value: 'name' // 默认value
+        /* code: 'code', // 默认code
+        children: 'children' */
+      },
+      initCity: []
     }
   },
   created () {
@@ -79,7 +98,32 @@ export default {
         { name: '舟山', code: '1007' }
       ]
       this.initValue= [1991, 3, 10]
+      this.cityColumns = City
+      this.initCity = [
+        /* {
+          name: '上海市',
+          code: 1003
+        },
+        {
+          name: '黄浦区6', code: 10036
+        },
+        {} */
+        // { name: '', code: 1006 }
+      ]
     }, 30)
+    setTimeout(() => {
+      //
+    }, 30)
+    /* this.initCity = [
+      {
+        name: '上海市',
+        code: 1003
+      },
+      {
+        name: '黄浦区6', code: 10036
+      },
+      {}
+    ] */
   },
   methods: {
     show1 () {
@@ -91,6 +135,9 @@ export default {
     show3 () {
       this.singlePicker = true
     },
+    show4 () {
+      this.cityPicker = true
+    },
     singleOk () {
       console.log(this.$refs.singlePickerRef.getResult())
     },
@@ -101,6 +148,10 @@ export default {
     dateOk2 () {
       this.dataPicker2 = false
       console.log(this.$refs.datePickerRef2.getResult())
+    },
+    cityOk () {
+      this.cityPicker = false
+      console.log(this.$refs.cityPicker.getResult())
     }
   }
 }

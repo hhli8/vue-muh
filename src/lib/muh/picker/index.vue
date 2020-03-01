@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="muh-picker" :style='"height: "+boxHeight+"px;"'>
-      <picker-slot ref="slot" v-for="(item,index) in type?(type==='date'?dateColumns:columns):[{values: columns, defaultIndex: index, type: 'single'}]" :key="index" :list="item.values"
+      <picker-slot ref="slot" v-for="(item,index) in type?(type==='date'?dateColumns:(type==='adress'?cityColumns:columns)):[{values: columns, defaultIndex: index, type: 'single'}]" :key="index" :list="item.values"
         :defaultSelected="item.defaultIndex"
         :visibleCount="visibleItemCount"
         :type="item.type"
@@ -36,6 +36,8 @@ export default {
       curDay: '',
       curMonth: '',
       isLastYear: true,
+      cityColumns: [],
+      adressResult: {}
     }
   },
   props: {
@@ -81,6 +83,9 @@ export default {
     code () {
       return this.setKey.code || 'code'
     },
+    children () {
+      return this.setKey.children || 'children'
+    },
     index () {
       return this.setKey.defaultIndex || 0
     }
@@ -89,18 +94,125 @@ export default {
     if (this.type === 'date') {
       this.dateFormate(this.minYear)
     }
+    this.checkInit(this.initValue)
   },
   watch: {
     initValue (val) {
-      this.hasInit = this.initValue.length > 0
-      if (val.length) {
-        if (this.type === 'date') {
-          this.dateFormate(this.minYear)
+      this.checkInit(val)
+    },
+    columns () {
+      if (this.type === 'adress') {
+        let cityArray = this.columns[0][this.children] || []
+        let districtArray = []
+        if (cityArray && cityArray[0] && cityArray[0][this.children]) {
+          districtArray = cityArray[0][this.children]
+        }
+        this.cityColumns = [
+          {
+            values: this.columns,
+            defaultIndex: 0,
+            type: 'province'
+          },
+          {
+            values: cityArray,
+            defaultIndex: 0,
+            type: 'city'
+          },
+          {
+            values: districtArray,
+            defaultIndex: 0,
+            type: 'district'
+          }
+        ]
+        this.adressResult = {
+          province: {
+            name: this.columns[0][this.value],
+            code: this.columns[0][this.code]
+          }
+        }
+        if (cityArray[0]) this.adressResult.city = {
+          name: cityArray[0][this.value],
+          code: cityArray[0][this.code]
+        }
+        if (districtArray[0]) this.adressResult.district = {
+          name: districtArray[0][this.value],
+          code: districtArray[0][this.code]
+        }
+        if (this.initValue.length) {
+          this.cityInit()
         }
       }
     }
   },
   methods: {
+    checkInit (val) {
+      this.hasInit = this.initValue.length > 0
+      if (val.length) {
+        if (this.type === 'date') {
+          this.dateFormate(this.minYear)
+        } else if (this.type === 'adress') {
+          this.cityInit()
+        }
+      }
+    },
+    cityInit () {
+      let pro = this.initValue[0]
+      let city = this.initValue[1]
+      let dist = this.initValue[2]
+      let pcode = pro.code
+      let ccode = city && city.code
+      let dcode = dist && dist.code
+      if (this.cityColumns.length) {
+        for (let i = 0, l = this.columns.length; i < l; i++) {
+          if (pcode === this.columns[i][this.code]) {
+            this.cityColumns[0].defaultIndex = i
+            this.adressResult = {
+              province: {
+                name: this.columns[i][this.value],
+                code: pcode
+              }
+            }
+            break
+          }
+        }
+        if (ccode) {
+          let arr = this.columns[this.cityColumns[0].defaultIndex][this.children]
+          for (let i = 0, l = arr.length; i < l; i++) {
+            if (ccode === arr[i][this.code]) {
+              this.cityColumns[1].defaultIndex = i
+              this.cityColumns[1].values = arr
+              this.adressResult.city = {
+                name: arr[i][this.value],
+                code: ccode
+              }
+              break
+            }
+          }
+          if (dcode) {
+            let arrDist = arr[this.cityColumns[1].defaultIndex][this.children]
+            for (let i = 0, l = arrDist.length; i < l; i++) {
+              if (dcode === arrDist[i][this.code]) {
+                this.cityColumns[2].defaultIndex = i
+                this.cityColumns[2].values = arrDist
+                this.adressResult.district = {
+                  name: arrDist[i][this.value],
+                  code: dcode
+                }
+                break
+              }
+            }
+          } else {
+            this.cityColumns[2].values = []
+            this.adressResult.district = {}
+          }
+        } else {
+          this.cityColumns[1].values = []
+          this.cityColumns[2].values = []
+          this.adressResult.city = {}
+          this.adressResult.district = {}
+        }
+      }
+    },
     dateFormate (minYear) {
       // console.log(this.lang)
       let hasInit = this.hasInit // false
@@ -191,6 +303,67 @@ export default {
         this.curDay = 1
       } else if (val.type === 'day') {
         this.curDay = val.index + 1
+      } else if (val.type === 'province') {
+        this.adressResult.province = {
+          name: val.val[this.value],
+          code: val.val[this.code]
+        }
+        this.adressResult.city = {}
+        this.adressResult.district = {}
+        let cityArray = val.val[this.children] || [] // this.columns[val.index][this.children]
+        let city = {
+          values: cityArray,
+          defaultIndex: 0,
+          type: 'city'
+        }
+        if (cityArray[0]) {
+          this.adressResult.city = {
+            name: cityArray[0][this.value],
+            code: cityArray[0][this.code]
+          }
+        }
+        let districtArray = []
+        if (cityArray && cityArray[0] && cityArray[0][this.children]) {
+          districtArray = cityArray[0][this.children]
+        }
+        let district = {
+          values: districtArray,
+          defaultIndex: 0,
+          type: 'district'
+        }
+        if (districtArray[0]) {
+          this.adressResult.district = {
+            name: districtArray[0][this.value],
+            code: districtArray[0][this.code]
+          }
+        }
+        this.$set(this.cityColumns, 1, city)
+        this.$set(this.cityColumns, 2, district)
+      } else if (val.type === 'city') {
+        this.adressResult.city = {
+          name: val.val[this.value],
+          code: val.val[this.code]
+        }
+        let districtArray = val.val[this.children]
+        let values = districtArray || []
+        this.adressResult.district = {}
+        if (values[0]) {
+          this.adressResult.district = {
+            name: values[0][this.value],
+            code: values[0][this.code]
+          }
+        }
+        let district = {
+          values,
+          defaultIndex: 0,
+          type: 'district'
+        }
+        this.$set(this.cityColumns, 2, district)
+      } else if (val.type === 'district') {
+        this.adressResult.district = {
+          name: val.val[this.value],
+          code: val.val[this.code]
+        }
       }
     },
     getResult () {
@@ -206,6 +379,8 @@ export default {
           month: this.curMonth || (this.hasInit ? Number(this.initValue[1]) : Month),
           day: this.curDay || (this.hasInit ? Number(this.initValue[2]) : Day)
         }
+      } else if (this.type === 'adress') {
+        return this.adressResult
       } else {
         return {}
       }

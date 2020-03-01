@@ -8,15 +8,34 @@ or
   :actLine='3'
   :visibleItemCount='5'>
 </muh-picker>
+例2(date-picker)：
+<muh-picker
+  ref="datePickerRef"
+  :set-key="columnsOptionDate"
+  :min-year="1970"
+  :initValue="initValue"
+  :actLine='3'
+  lang="zh"
+  type="date">
+</muh-picker>
+例3：
+  <muh-picker
+    ref="cityPicker"
+    :actLine='3'
+    :set-key="cityoption"
+    :initValue="initCity"
+    :columns="cityColumns"
+    type="adress">
+  </muh-picker>
 
 参数：
-  type——picker类型，默认为'single'，'date'——时间picker
+  type——picker类型，默认为'single'，'date'——时间picker，'adress'——城市选择器
     type: String
     default: 'single'
   columns——显示的数据
     type: Array
     default: []
-  set-key——显示的键名等设置，有默认激活的项index
+  set-key——显示的键名等设置，有默认激活的项index (type=single)
     type: Object
     default: {
       value: 'name', // 默认value——键名
@@ -29,6 +48,15 @@ or
   visibleItemCount——可见的行数，最少行数未测试，一般大于3吧
     type: Number
     default: 5
+  min-year——最小年份  (type=date)
+    type: Number
+    default: 1960
+  lang——语言(zh,en) (type=date)
+    type: String
+    default: 'en'
+  initValue——默认值
+    type: Array
+    default: []
 方法：
   getResult——获取选择的结果
      例：this.$refs.singlePickerRef.getResult()
@@ -49,6 +77,46 @@ or
     code: 'code', // 默认code
     defaultIndex: 1 // 默认0
   }
+例2：
+  this.initValue= [1991, 3, 10] // 年 月 日
+例3：
+  cityoption: {
+    value: 'name' // 默认value
+    /* code: 'code', // 默认code
+    children: 'children' */
+  }
+  initCity
+    [
+      { name: '上海市', code: 1003 },
+      { name: '黄浦区6', code: 10036 },
+      { name: '街道xx', code: 100361 }
+    ]
+  cityColumns
+    [
+      {
+        name: '浙江省',
+        code: 1001,
+        children: [
+          { name: '杭州市', code: 10011, children: [
+            { name: '上城区', code: 100111 },
+            { name: '下城区', code: 100112 },
+            { name: '滨江区', code: 100113 }
+          ] },
+          { name: '金华市', code: 10012, children: [
+            { name: '婺城区', code: 100121 },
+            { name: '义乌市', code: 100122 },
+            { name: '金东区', code: 100123 }
+          ] },
+          { name: '宁波市', code: 10013, children: [
+            { name: '海曙区', code: 100131 },
+            { name: '江东区', code: 100132 },
+            { name: '江北区', code: 100133 }
+          ] }
+        ]
+      },
+      ......
+    ]
+  
 
 import { MPicker } from 'vue-muh'
 Vue.use(MPicker)
