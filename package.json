@@ -17,6 +17,8 @@
   "dependencies": {
     "default-passive-events": "^1.0.10",
     "highlight.js": "^9.17.1",
+    "html2canvas": "^1.0.0-rc.5",
+    "jspdf": "^1.5.3",
     "raw-loader": "^4.0.0",
     "vue": "^2.5.11",
     "vue-router": "^3.0.7",

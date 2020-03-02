@@ -110,6 +110,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/picker'], resolve) }
     },
     {
+      path: '/pdf',
+      name: 'Pdf',
+      component: resolve => { require(['@/views/muh/pdf'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }

@@ -16,7 +16,8 @@ const List = [
   { name: 'Router', path: 'Router' },
   { name: 'Video', path: 'Video' },
   { name: 'Dialog', path: 'Dialog' },
-  { name: 'Picker', path: 'Picker' }
+  { name: 'Picker', path: 'Picker' },
+  { name: 'Pdf', path: 'Pdf' }
 ]
 
 export default List
