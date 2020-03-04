@@ -1,0 +1,54 @@
+<pre><code>
+<muhJdpicker></muhJdpicker>
+
+<muh-jdpicker
+  :item-style="itemstyle"
+  :item-actstyle="itemactStyle"
+  @result="getResult"
+  :initValue="initValue"
+  :columns="columns">
+</muh-jdpicker>
+
+参数：
+  item-style —— 选项的样式
+  item-actstyle —— 激活的选项的样式
+  initValue —— 初始化的值
+  columns —— 列表值，支持多个子级，不同子级个数
+    [
+      {
+        name: '浙江省',
+        code: 1001,
+        children: [
+          { name: '杭州市', code: 10011, children: [
+            { name: '上城区', code: 100111 },
+            { name: '下城区', code: 100112 },
+            { name: '滨江区', code: 100113 }
+          ] },
+          { name: '金华市', code: 10012, children: [
+            { name: '婺城区', code: 100121 },
+            { name: '义乌市', code: 100122 },
+            { name: '金东区', code: 100123 }
+          ] },
+          { name: '宁波市', code: 10013, children: [
+            { name: '海曙区', code: 100131 },
+            { name: '江东区', code: 100132 },
+            { name: '江北区', code: 100133 }
+          ] }
+        ]
+      },
+      ......
+    ]
+方法：
+事件：
+  result —— 获取选择结果的回调
+
+例：
+  this.itemstyle = 'height: 40px;line-height: 40px;color: #14181F;'
+  this.itemactStyle = 'color: #2C72F5;'
+  this.columns = City
+  this.initValue = ['浙江省', '杭州市', '上城区']
+
+import { MJDPicker } from 'vue-muh'
+Vue.use(MJDPicker)
+   
+</code></pre>

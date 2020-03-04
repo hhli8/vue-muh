@@ -83,6 +83,40 @@ export default [
   },
   {
     name: '江西省',
+    code: 1006,
+    children: [
+      { name: '黄浦区1', code: 10031 },
+      { name: '黄浦区2', code: 10032 },
+      { name: '黄浦区3', code: 10033 },
+      { name: '黄浦区4', code: 10034 },
+      { name: '黄浦区5', code: 10035 },
+      { name: '黄浦区6', code: 10036 },
+      { name: '黄浦区7', code: 10037 },
+      { name: '黄浦区8', code: 10038 }
+    ]
+  },
+  {
+    name: '山西省',
+    code: 1005
+  },
+  {
+    name: '江西省',
+    code: 1006
+  },
+  {
+    name: '山西省',
+    code: 1005
+  },
+  {
+    name: '江西省',
+    code: 1006
+  },
+  {
+    name: '山西省',
+    code: 1005
+  },
+  {
+    name: '江西省',
     code: 1006
   }
 ]

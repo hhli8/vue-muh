@@ -17,7 +17,9 @@ const List = [
   { name: 'Video', path: 'Video' },
   { name: 'Dialog', path: 'Dialog' },
   { name: 'Picker', path: 'Picker' },
-  { name: 'Pdf', path: 'Pdf' }
+  { name: '京东地址选择器', path: 'JDAdressPicker' },
+  { name: 'Pdf', path: 'Pdf' },
+  { name: 'PassiveEvent', path: 'PassiveEvent' }
 ]
 
 export default List

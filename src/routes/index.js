@@ -110,9 +110,19 @@ export default new Router({
       component: resolve => { require(['@/views/muh/picker'], resolve) }
     },
     {
+      path: '/jd_adress_picker',
+      name: 'JDAdressPicker',
+      component: resolve => { require(['@/views/muh/picker/jd.vue'], resolve) }
+    },
+    {
       path: '/pdf',
       name: 'Pdf',
       component: resolve => { require(['@/views/muh/pdf'], resolve) }
+    },
+    {
+      path: '/passive_event',
+      name: 'PassiveEvent',
+      component: resolve => { require(['@/views/muh/passiveEventListeners'], resolve) }
     },
     {
       path: '/test',
