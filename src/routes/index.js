@@ -125,6 +125,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/passiveEventListeners'], resolve) }
     },
     {
+      path: '/hack_input',
+      name: 'HackInput',
+      component: resolve => { require(['@/views/muh/hack/input.vue'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }

@@ -19,7 +19,8 @@ const List = [
   { name: 'Picker', path: 'Picker' },
   { name: '京东地址选择器', path: 'JDAdressPicker' },
   { name: 'Pdf', path: 'Pdf' },
-  { name: 'PassiveEvent', path: 'PassiveEvent' }
+  { name: 'PassiveEvent', path: 'PassiveEvent' },
+  { name: 'hack之input安卓', path: 'HackInput' }
 ]
 
 export default List
