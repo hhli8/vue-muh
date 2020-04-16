@@ -130,6 +130,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/hack/input.vue'], resolve) }
     },
     {
+      path: '/web_worker',
+      name: 'WebWorker',
+      component: resolve => { require(['@/views/muh/webworker'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }

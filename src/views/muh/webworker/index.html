@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<title></title>
+	</head>
+	<body>
+	  hello word!
+	  <div id="result"></div>
+	  <input type="text" id="first"/>
+	  <script>
+	    let myWorker = new Worker('worker.js')
+      console.log(myWorker)
+      let first = document.getElementById('first')
+      first.onchange = function() {
+        myWorker.postMessage([first.value])
+        console.log('Message posted to worker');
+      }
+      let result = document.getElementById('result')
+      myWorker.onmessage = function(e) {
+        result.textContent = e.data;
+        console.log('Message received from worker');
+        // myWorker.terminate();
+      }
+	  </script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<pre><code>
+层级：可同级或其他，同源即可
+html
+// 在主线程中使用时，onmessage和postMessage() 必须挂在worker对象上，
+// 而在worker中使用时不用这样做。原因是，在worker内部，worker是有效的全局作用域。
+<div id="result"></div>
+<input type="text" id="first"/>
+let myWorker = new Worker('worker.js') // 或绝对路径
+let first = document.getElementById('first')
+first.onchange = function() {
+  myWorker.postMessage([first.value])
+  console.log('Message posted to worker');
+}
+let result = document.getElementById('result')
+myWorker.onmessage = function(e) {
+  result.textContent = e.data;
+  console.log('Message received from worker');
+  // myWorker.terminate(); // 关闭
+}
+
+worker.js
+onmessage = function(e) {
+  // console.log('Message received from main script');
+  var workerResult = 'Result: ' + e.data[0] // (e.data[0] * e.data[1]);
+  // console.log('Posting message back to main script');
+  postMessage(workerResult); // 发送消息
+  // close();
+}
+</code></pre>
