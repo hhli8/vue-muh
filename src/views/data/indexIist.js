@@ -21,7 +21,8 @@ const List = [
   { name: 'Pdf', path: 'Pdf' },
   { name: 'PassiveEvent', path: 'PassiveEvent' },
   // { name: 'hack之input安卓', path: 'HackInput' }
-  { name: 'Web Worker', path: 'WebWorker' }
+  { name: 'Web Worker', path: 'WebWorker' },
+  { name: '布局--左右', path: 'LayoutClassify' }
 ]
 
 export default List

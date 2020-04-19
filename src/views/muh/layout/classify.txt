@@ -1,0 +1,25 @@
+<pre><code>
+<muhClassify></muhClassify>
+
+<muh-classify :left-list="left" :show-key="'name'" v-model="positive">
+  <div class="scroll-right" slot="right"></div>
+</muh-classify>
+
+注意：该组件父级需要是display: flex;
+option:
+  left-list —— Array
+    [
+      { name: '精选', code: 1002 }, { name: '女装', code: 1003 }, { name: '手机', code: 1004 },
+      { name: '数码', code: 1002 }, { name: '箱包', code: 1003 }, { name: '男鞋', code: 1004 },
+      { name: '食品', code: 1002 }, { name: '内衣', code: 1003 }, { name: '运动', code: 1004 },
+      { name: '居家百货', code: 1002 }, { name: '家装', code: 1003 }, { name: '美妆', code: 1004 },
+      { name: '精选', code: 1002 }, { name: '女装', code: 1003 }, { name: '手机', code: 1004 },
+      { name: '精选', code: 1002 }, { name: '女装', code: 1003 }, { name: '生鲜', code: 1004 }
+    ]
+  show-key —— String, 默认'k'
+  v-model —— Number, 默认 0
+  
+注意：可通过监听 'positive' 知晓左边切换的操作，进行load处理
+
+
+</code></pre>

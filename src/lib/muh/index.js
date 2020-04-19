@@ -11,6 +11,7 @@ import MVideo from './video'
 import MDialog from './dialog'
 import MPicker from './picker'
 import MJDPicker from './jdpicker'
+import MClassify from './classify'
 
 import 'default-passive-events'
 
@@ -27,7 +28,8 @@ let components = [
   MVideo,
   MDialog,
   MPicker,
-  MJDPicker
+  MJDPicker,
+  MClassify
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -47,5 +49,6 @@ export {
   MVideo,
   MDialog,
   MPicker,
-  MJDPicker
+  MJDPicker,
+  MClassify
 }

@@ -15,6 +15,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "better-scroll": "^1.15.2",
     "default-passive-events": "^1.0.10",
     "highlight.js": "^9.17.1",
     "html2canvas": "^1.0.0-rc.5",

@@ -135,6 +135,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/webworker'], resolve) }
     },
     {
+      path: '/layout_classify',
+      name: 'LayoutClassify',
+      component: resolve => { require(['@/views/muh/layout/classify'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }
