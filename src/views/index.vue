@@ -5,6 +5,7 @@
       <router-link :to="{ name: item.path }">{{item.name}}</router-link>
     </div>
     <p style="text-align: center;font-size: 16px;padding: 10px;">需引入mixins</p>
+    <p> 按需引入：import MClassify from 'vue-muh/lib/classify'</p>
   </div>
 </template>
 
