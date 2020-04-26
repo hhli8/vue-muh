@@ -4,20 +4,25 @@
     <canvas class="cv-circle" ref="target"></canvas>
     <div class="demo"></div>
     <muh-circle :option="option"></muh-circle>
+    <!--<m-circle :diameter="390"></m-circle>-->
     <div id="codeView" v-highlight v-html='htmlEncode(code)'></div>
   </div>
 </template>
 
 <script>
 import usecode from './circle.txt'
+// import mCircle from './c.vue'
 export default {
+  components: {
+    // mCircle
+  },
   data () {
     return {
       code: '',
       start: 0,
       // 0 * Math.PI / 180
       end:  360,
-      option: {
+      option2: {
         width: 300, // 宽
         height: 300, // 高
         start: 0, // 起点角度
@@ -29,6 +34,19 @@ export default {
         percent: 98,
         distance: 100, // 间距，越大，速度越小
         mwidth: 340 // 设计稿默认宽度
+      },
+      option: {
+        width: 390, // 宽
+        height: 390, // 高
+        start: 45, // 起点角度
+        end: 320, // 结束角度
+        tcoclor: 'red',
+        bcolor: '#fff',
+        outradius: 85,
+        thickness: 10,
+        percent: 100,
+        distance: 100, // 间距，越大，速度越小
+        mwidth: 750 // 设计稿默认宽度
       }
     }
   },

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            .content {
+                position: relative;
+                left: 0%;
+                width: 400px;
+                height: 400px;
+                background: rgba(0, 197, 209, 0.4);
+                overflow: hidden;
+            }
+        </style>
+    </head>
+
+    <body style="background: #0E2A42;">
+        <div id="content" class="content">
+        </div>
+    </body>
+    <!--<script src="d3.v5.min.js"></script>-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+        var curved_column = {
+            width: 400,
+            height: 400,
+            draw: function() {
+                this.content = document.getElementById('content')
+
+                this.svg = d3.select(this.content).append('svg').attr('width', this.width).attr('height', this.height)
+                this._initDom()
+            },
+            _initDom: function() {
+                var fd = 270 // 分段数
+                this.g = this.svg.append("g")
+                    .attr("transform", "translate(200, 200)");
+                var compute = d3.interpolate('#FF0000', '#0B16FD');
+                var linear = d3.scaleLinear()
+                    .domain([0, fd])
+                    .range([0, 1]);
+                var pie = d3.pie()
+                    .value(function(d) {
+                        return d;
+                    })
+                    .sort(null)
+                    .startAngle(0)
+                    .endAngle(1.5 * Math.PI)
+                    
+                var arc = d3.arc()
+                    .innerRadius(85)
+                    .outerRadius(100);
+                
+                var data = [];
+                for (var i = 0 ; i < fd ; i++) {
+                    data.push(i)
+                }
+                this.g.datum(data).selectAll('path')
+                    .data(pie)
+                    .enter()
+                    .append("path")
+                    .attr("d", arc)
+                    .style("fill", function (d, i) {
+                        return compute(linear(d.value));
+                    })
+                    .style("stroke", function (d, i) {
+                        return compute(linear(d.value));
+                    })
+            }
+        }
+        curved_column.draw()
+    </script>
+</html>
