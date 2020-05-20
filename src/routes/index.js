@@ -140,6 +140,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/layout/classify'], resolve) }
     },
     {
+      path: '/button',
+      name: 'Button',
+      component: resolve => { require(['@/views/muh/button'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }

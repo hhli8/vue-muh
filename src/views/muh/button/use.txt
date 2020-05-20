@@ -1,0 +1,14 @@
+<pre><code>
+<muhButton></muhButton>
+
+<muh-button :type="'outside'" v-model="checkout2" @click="click"></muh-button>
+
+type:
+  outside、inner（默认）
+v-model: 是否展开
+click: 点击事件，回调参数boolean，是否展开
+
+import { MButton } from 'vue-muh'
+Vue.use(MButton)
+   
+</code></pre>

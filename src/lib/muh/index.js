@@ -12,6 +12,7 @@ import MDialog from './dialog'
 import MPicker from './picker'
 import MJDPicker from './jdpicker'
 import MClassify from './classify'
+import MButton from './button'
 
 import 'default-passive-events'
 
@@ -29,7 +30,8 @@ let components = [
   MDialog,
   MPicker,
   MJDPicker,
-  MClassify
+  MClassify,
+  MButton
 ]
 components.forEach((item) => {
   item.install = (Vue, options) => {
@@ -50,5 +52,6 @@ export {
   MDialog,
   MPicker,
   MJDPicker,
-  MClassify
+  MClassify,
+  MButton
 }

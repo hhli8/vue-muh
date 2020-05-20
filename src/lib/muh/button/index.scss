@@ -1,0 +1,61 @@
+.muh-button {
+    $btn-width: 40px;
+    $pad-width: 4px;
+    $handle-width: 14px;
+    display: inline-block;
+    .switch-track {
+        background: #ccc;
+        border-radius: 12px;
+        transition: background 250ms ease-out;
+        box-sizing: border-box;
+        padding: 3px 4px;
+        width: $btn-width;
+        .handle {
+            width: $handle-width;
+            height: $handle-width;
+            border-radius: 50%;
+            background: #fff;
+            display: block;
+            transition: transform 250ms ease-out;
+            will-change: transition;
+            transform: translateX(0);
+        }
+        &.on {
+            background: #f44336;
+            .handle {
+                transform: translateX(calc(#{$btn-width - ($pad-width * 2) - $handle-width}));
+            }
+        }
+    }
+    .switch-track-outside {
+        background: #ccc;
+        border-radius: 12px;
+        transition: background 250ms ease-out;
+        box-sizing: border-box;
+        margin: 2px 4px;
+        width: 32px;
+        height: 14px;
+        position: relative;
+        .handle {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            display: block;
+            transition: left 250ms ease-out;
+            will-change: transition;
+            left: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+        &.on {
+            background: #f44336;
+            .handle {
+//              left: calc(32-(18-4));
+                left: 18px;
+            }
+        }
+    }
+}
