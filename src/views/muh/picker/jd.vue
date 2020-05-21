@@ -40,7 +40,7 @@ export default {
       this.itemstyle = 'height: 40px;line-height: 40px;color: #14181F;'
       this.itemactStyle = 'color: #2C72F5;'
       this.columns = City
-      this.initValue = ['浙江省', '杭州市', '上城区']
+      this.initValue = ['浙江省', '杭州市', '临安市']
     }, 300)
   },
   methods: {
