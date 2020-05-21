@@ -79,7 +79,9 @@ export default {
               break
             }
           }
-          this.curNavIndex = L - 1
+          // this.curNavIndex = L - 1
+          this.curNavIndex = this.initValue.length - 1
+          this.onClickResultItem(item, index)
           // console.log(this.staticAdress)
         })
       }
