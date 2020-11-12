@@ -23,7 +23,8 @@ const List = [
   // { name: 'hack之input安卓', path: 'HackInput' }
   { name: 'Web Worker', path: 'WebWorker' },
   { name: '布局--左右', path: 'LayoutClassify' },
-  { name: 'Button', path: 'Button' }
+  { name: 'Button', path: 'Button' },
+  { name: 'Copy-复制功能(仅显示非组件)', path: 'Copy' }
 ]
 
 export default List

@@ -145,6 +145,11 @@ export default new Router({
       component: resolve => { require(['@/views/muh/button'], resolve) }
     },
     {
+      path: '/copy',
+      name: 'Copy',
+      component: resolve => { require(['@/views/muh/copy'], resolve) }
+    },
+    {
       path: '/test',
       name: 'kkk',
       component: resolve => { require(['@/views/muh/shine'], resolve) }

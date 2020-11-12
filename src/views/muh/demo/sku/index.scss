@@ -1,0 +1,112 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 1227212 */
+  src: url('//at.alicdn.com/t/font_1227212_h297hwguzcj.eot');
+  src: url('//at.alicdn.com/t/font_1227212_h297hwguzcj.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1227212_h297hwguzcj.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1227212_h297hwguzcj.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1227212_h297hwguzcj.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1227212_h297hwguzcj.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.muh-sku {
+    padding: 0 20px;
+    &-good {
+        display: flex;
+        margin-bottom: 20px;
+        .good-img {
+            width: 180px;
+            height: 180px;
+            border: 1px solid #BDBDBD;
+            border-radius: 10px;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .good-info {
+            flex: 1;
+            padding-left: 20px;
+            .price {
+                color: #c03a57;
+                font-size: 32px;
+                margin-top: 10px;
+            }
+            .stock, .txt {
+                color: #616161;
+                font-size: 20px;
+            }
+        }
+    }
+    .scroll-box::-webkit-scrollbar {
+      display: none;
+    }
+    .scroll-box {
+        .icon-minus:before {
+            content: "\e620";
+        }
+        .icon-add:before {
+            content: "\e632";
+        }
+        .count-box {
+            .count-computed {
+                display: flex;
+                span {
+                    background: #f6f6f6;
+                    color: #333;
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                }
+                .iconfont {
+                    width: 50px;
+                }
+                .count-value {
+                    width: 70px;
+                    margin: 0 12px;
+                }
+            }
+        }
+    }
+//  &-title {
+//      color: #333;
+//      font-size: 26px;
+//      margin-bottom: 30px;
+//  }
+    &-list {
+        .name {
+            color: #999;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .sitem-box {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            .sitem {
+                display: inline-block;
+                margin-bottom: 30px;
+                padding: 12px 26px;
+                color: #000;
+                font-size: 26px;
+                background: #F7F7F7;
+                border-radius: 10px;
+                margin-right: 34px;
+                box-sizing: border-box;
+            }
+            .sitem.disable {
+                color: #bdbdbd;
+            }
+            .sitem.chosed {
+                color: #BD415E;
+                background: #FEF4F3;
+            }
+        }
+    }
+}

@@ -108,7 +108,9 @@ export default {
     }
   },
   created () {
-  	//
+  	if (this.skulist.length) {
+      this.init(this.skulist)
+    }
   },
   methods: {
   	init (val) {
@@ -144,7 +146,7 @@ export default {
   	},
   	// 单个属性的点击事件
   	select (e, item, index, sitem, sindex) {
-  		if (sitem.nopitch) return
+  		if (sitem.nopitch) return // true表示无匹配的商品
       if (sitem.match) {
         this.$set(sitem, 'match', false)
         this.seleceProps[index] = ''
@@ -190,6 +192,7 @@ export default {
     },
     // 将非同级的spu的item做判断(是否有商品对应)
     dealAfterToggle (item, index, sitem, sindex) {
+      // console.log(item, index, sitem, sindex)
       this.skulist.forEach((i, indexi) => {
         // 非当前操作的spu，下的sku需要处理，且根据已选的其他的spu下的sku进行处理
         if (index !== indexi) {
@@ -199,11 +202,13 @@ export default {
             let nopitch = true // 先假设不满足
             for (var k = 0, l = this.goodlist.length; k < l; k++) {
               // 存在有符合当前的sku，且符合非本spu下的已选的sku则将nopitch=false
+              // console.log(this.checkIspitch(this.goodlist[k], j, indexi))
               if (this.checkIspitch(this.goodlist[k], j, indexi)) {
                 nopitch = false
                 break
               }
             }
+            // console.log(nopitch)
             this.$set(j, 'nopitch', nopitch)
           })
         }
@@ -214,6 +219,7 @@ export default {
       var tag = true
       if (good.skuPvStrs) {
         // 如果不包含false
+        // console.log(good.skuPvStrs, sitem[this.sid], good.skuPvStrs.indexOf(sitem[this.sid]))
         if (good.skuPvStrs.indexOf(sitem[this.sid]) === -1) {
           tag = false
         }
